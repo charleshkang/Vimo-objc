@@ -7,25 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9ED963F6FA3ABE7658200DC6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC7A167C80DD410C32B6731 /* libPods.a */; };
 		BF0D70F81C7EEAE800C4EDEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D70F71C7EEAE800C4EDEB /* main.m */; };
 		BF0D70FB1C7EEAE800C4EDEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D70FA1C7EEAE800C4EDEB /* AppDelegate.m */; };
-		BF0D70FE1C7EEAE800C4EDEB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D70FD1C7EEAE800C4EDEB /* ViewController.m */; };
 		BF0D71011C7EEAE800C4EDEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0D70FF1C7EEAE800C4EDEB /* Main.storyboard */; };
 		BF0D71031C7EEAE800C4EDEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF0D71021C7EEAE800C4EDEB /* Assets.xcassets */; };
 		BF0D71061C7EEAE800C4EDEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0D71041C7EEAE800C4EDEB /* LaunchScreen.storyboard */; };
+		BF0D710F1C7F7FC200C4EDEB /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0D710E1C7F7FC200C4EDEB /* Spotify.framework */; };
+		BF0D71111C7F7FCE00C4EDEB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */; };
+		BF0D71141C7F8E4900C4EDEB /* VOLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */; };
+		BF0D71171C7F903100C4EDEB /* VOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D71161C7F903100C4EDEB /* VOUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5BC7A167C80DD410C32B6731 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0D70F31C7EEAE800C4EDEB /* Vimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0D70F71C7EEAE800C4EDEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BF0D70F91C7EEAE800C4EDEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BF0D70FA1C7EEAE800C4EDEB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BF0D70FC1C7EEAE800C4EDEB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BF0D70FD1C7EEAE800C4EDEB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		BF0D71001C7EEAE800C4EDEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF0D71021C7EEAE800C4EDEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF0D71051C7EEAE800C4EDEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF0D71071C7EEAE800C4EDEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF0D710D1C7F7F2600C4EDEB /* VOKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOKeys.h; sourceTree = "<group>"; };
+		BF0D710E1C7F7FC200C4EDEB /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BF0D71121C7F8E4900C4EDEB /* VOLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLoginVC.h; sourceTree = "<group>"; };
+		BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLoginVC.m; sourceTree = "<group>"; };
+		BF0D71151C7F903100C4EDEB /* VOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOUser.h; sourceTree = "<group>"; };
+		BF0D71161C7F903100C4EDEB /* VOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOUser.m; sourceTree = "<group>"; };
+		D1CC1BD9FB1599791F612DA6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		F659938A990139EB21CF6356 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF0D71111C7F7FCE00C4EDEB /* AVFoundation.framework in Frameworks */,
+				BF0D710F1C7F7FC200C4EDEB /* Spotify.framework in Frameworks */,
+				9ED963F6FA3ABE7658200DC6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +59,8 @@
 			children = (
 				BF0D70F51C7EEAE800C4EDEB /* Vimo */,
 				BF0D70F41C7EEAE800C4EDEB /* Products */,
+				E68A1D044B0E53B7BEAFE9D3 /* Pods */,
+				CE2C7385D88879063F3201A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,11 +75,14 @@
 		BF0D70F51C7EEAE800C4EDEB /* Vimo */ = {
 			isa = PBXGroup;
 			children = (
+				BF0D70FF1C7EEAE800C4EDEB /* Main.storyboard */,
+				BF0D710D1C7F7F2600C4EDEB /* VOKeys.h */,
 				BF0D70F91C7EEAE800C4EDEB /* AppDelegate.h */,
 				BF0D70FA1C7EEAE800C4EDEB /* AppDelegate.m */,
-				BF0D70FC1C7EEAE800C4EDEB /* ViewController.h */,
-				BF0D70FD1C7EEAE800C4EDEB /* ViewController.m */,
-				BF0D70FF1C7EEAE800C4EDEB /* Main.storyboard */,
+				BF0D71121C7F8E4900C4EDEB /* VOLoginVC.h */,
+				BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */,
+				BF0D71151C7F903100C4EDEB /* VOUser.h */,
+				BF0D71161C7F903100C4EDEB /* VOUser.m */,
 				BF0D71021C7EEAE800C4EDEB /* Assets.xcassets */,
 				BF0D71041C7EEAE800C4EDEB /* LaunchScreen.storyboard */,
 				BF0D71071C7EEAE800C4EDEB /* Info.plist */,
@@ -79,6 +99,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CE2C7385D88879063F3201A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */,
+				BF0D710E1C7F7FC200C4EDEB /* Spotify.framework */,
+				5BC7A167C80DD410C32B6731 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E68A1D044B0E53B7BEAFE9D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D1CC1BD9FB1599791F612DA6 /* Pods.debug.xcconfig */,
+				F659938A990139EB21CF6356 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BF0D710A1C7EEAE800C4EDEB /* Build configuration list for PBXNativeTarget "Vimo" */;
 			buildPhases = (
+				317B71547A382165B38F9288 /* Check Pods Manifest.lock */,
 				BF0D70EF1C7EEAE800C4EDEB /* Sources */,
 				BF0D70F01C7EEAE800C4EDEB /* Frameworks */,
 				BF0D70F11C7EEAE800C4EDEB /* Resources */,
+				E80B26A891170AAA49484557 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -111,6 +152,11 @@
 					BF0D70F21C7EEAE800C4EDEB = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = FP79X83Q3E;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -145,14 +191,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		317B71547A382165B38F9288 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E80B26A891170AAA49484557 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BF0D70EF1C7EEAE800C4EDEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF0D70FE1C7EEAE800C4EDEB /* ViewController.m in Sources */,
+				BF0D71141C7F8E4900C4EDEB /* VOLoginVC.m in Sources */,
 				BF0D70FB1C7EEAE800C4EDEB /* AppDelegate.m in Sources */,
 				BF0D70F81C7EEAE800C4EDEB /* main.m in Sources */,
+				BF0D71171C7F903100C4EDEB /* VOUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,8 +340,14 @@
 		};
 		BF0D710B1C7EEAE800C4EDEB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1CC1BD9FB1599791F612DA6 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Vimo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charleshkang.Vimo;
@@ -271,8 +357,14 @@
 		};
 		BF0D710C1C7EEAE800C4EDEB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F659938A990139EB21CF6356 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Vimo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.charleshkang.Vimo;
@@ -299,6 +391,7 @@
 				BF0D710C1C7EEAE800C4EDEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

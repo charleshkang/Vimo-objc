@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define SPOTIFY_ACCESS_TOKEN_KEY @"vimoAccessToken"
+#define SPOTIFY_USERNAME_KEY @"spotifyUsername"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

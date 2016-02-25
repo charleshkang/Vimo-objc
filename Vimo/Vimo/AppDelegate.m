@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "VOKeys.h"
+#import "VOLoginVC.h"
+#import "VOUser.h"
 
 @interface AppDelegate ()
 
@@ -15,8 +18,30 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Spotify Authorization Initializers
+    SPTAuth *auth = [SPTAuth defaultInstance];
+    auth.clientID = @kClientId;
+    
+    auth.redirectURL = [NSURL URLWithString:@kCallbackURL];
+    
+    auth.requestedScopes = @[SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope,
+                              SPTAuthUserLibraryReadScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthUserLibraryModifyScope];
+    
+    
+#ifdef kTokenSwapServiceURL
+    auth.tokenSwapURL = [NSURL URLWithString:@kTokenSwapServiceURL];
+#endif
+#ifdef kTokenRefreshServiceURL
+    auth.tokenRefreshURL = [NSURL URLWithString:@kTokenRefreshServiceURL];
+#endif
+    auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
+    NSLog(@"Session: %@", auth.sessionUserDefaultsKey);
+    
+    if(auth.session == nil || ![auth.session isValid]) {
+        
+    }
     return YES;
 }
 

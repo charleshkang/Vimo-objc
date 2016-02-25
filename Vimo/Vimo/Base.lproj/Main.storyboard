@@ -1,25 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JRe-hs-QmA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Osaka.ttf">
+            <string>Osaka</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--LoginVC-->
+        <scene sceneID="3LM-EL-etU">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="JRe-hs-QmA" customClass="VOLoginVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="fS4-y7-kG8"/>
+                        <viewControllerLayoutGuide type="bottom" id="hdA-2q-qAG"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="TxN-kj-WVe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1R-gL-xJv" userLabel="BG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vimo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSi-GN-UGF">
+                                        <rect key="frame" x="49" y="141" width="503" height="59"/>
+                                        <fontDescription key="fontDescription" name="Osaka" family="Osaka" pointSize="50"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ili-rF-DZs">
+                                        <rect key="frame" x="178" y="518" width="244" height="44"/>
+                                        <state key="normal" image="log_in-mobile-1"/>
+                                        <connections>
+                                            <action selector="userLoggedInWithSpotify:" destination="JRe-hs-QmA" eventType="touchUpInside" id="ue5-PV-Gw6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.16144905892729833" green="0.35635863973521231" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ili-rF-DZs" secondAttribute="bottom" constant="38" id="4MM-6N-MZp"/>
+                                    <constraint firstItem="bSi-GN-UGF" firstAttribute="centerY" secondItem="r1R-gL-xJv" secondAttribute="centerY" constant="-129.5" id="4dJ-O5-m2Q"/>
+                                    <constraint firstItem="bSi-GN-UGF" firstAttribute="leading" secondItem="r1R-gL-xJv" secondAttribute="leading" constant="49" id="JlV-5L-PVR"/>
+                                    <constraint firstItem="ili-rF-DZs" firstAttribute="centerX" secondItem="r1R-gL-xJv" secondAttribute="centerX" id="X8V-R2-ikF"/>
+                                    <constraint firstAttribute="trailing" secondItem="bSi-GN-UGF" secondAttribute="trailing" constant="48" id="ih1-52-ctM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r1R-gL-xJv" firstAttribute="leading" secondItem="TxN-kj-WVe" secondAttribute="leading" id="Ikw-7M-VeR"/>
+                            <constraint firstItem="r1R-gL-xJv" firstAttribute="top" secondItem="TxN-kj-WVe" secondAttribute="top" id="MtT-pU-s5h"/>
+                            <constraint firstAttribute="bottom" secondItem="r1R-gL-xJv" secondAttribute="bottom" id="Qgg-jc-g1g"/>
+                            <constraint firstAttribute="trailing" secondItem="r1R-gL-xJv" secondAttribute="trailing" id="spC-dQ-hML"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="CA4-17-BDf">
+                        <nil key="title"/>
+                    </navigationItem>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vVw-Nq-GZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="130" y="-773"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="log_in-mobile-1" width="244" height="44"/>
+    </resources>
 </document>
