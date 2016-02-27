@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="SignikaNegative-Regular.ttf">
@@ -74,7 +75,40 @@
                     <view key="view" contentMode="scaleToFill" id="Obe-Jn-gKM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2C-M8-Y7w">
+                                <rect key="frame" x="0.0" y="501" width="600" height="99"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="kPY-ne-tGS"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-Sb-cRu">
+                                <rect key="frame" x="0.0" y="64" width="600" height="437"/>
+                                <color key="backgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="g2C-M8-Y7w" firstAttribute="leading" secondItem="Obe-Jn-gKM" secondAttribute="leading" id="4NF-Zo-KKt"/>
+                            <constraint firstItem="MEN-Sb-cRu" firstAttribute="leading" secondItem="Obe-Jn-gKM" secondAttribute="leading" id="4UR-7L-bDE"/>
+                            <constraint firstItem="XEI-ZQ-1Kd" firstAttribute="top" secondItem="g2C-M8-Y7w" secondAttribute="bottom" id="4Uq-Jb-wZT"/>
+                            <constraint firstItem="MEN-Sb-cRu" firstAttribute="width" secondItem="g2C-M8-Y7w" secondAttribute="height" multiplier="200:33" id="BXX-Va-1mX"/>
+                            <constraint firstItem="g2C-M8-Y7w" firstAttribute="top" secondItem="obV-p6-SEj" secondAttribute="bottom" constant="437" id="GbT-63-HG5"/>
+                            <constraint firstItem="MEN-Sb-cRu" firstAttribute="top" secondItem="obV-p6-SEj" secondAttribute="bottom" id="Sp1-9j-rS5"/>
+                            <constraint firstItem="g2C-M8-Y7w" firstAttribute="top" secondItem="obV-p6-SEj" secondAttribute="bottom" constant="437" id="dCf-RG-qUl"/>
+                            <constraint firstItem="g2C-M8-Y7w" firstAttribute="top" secondItem="MEN-Sb-cRu" secondAttribute="bottom" id="fe1-oh-s0b"/>
+                            <constraint firstAttribute="trailing" secondItem="MEN-Sb-cRu" secondAttribute="trailing" id="gKu-lD-sjE"/>
+                            <constraint firstItem="g2C-M8-Y7w" firstAttribute="width" secondItem="Obe-Jn-gKM" secondAttribute="height" multiplier="1:1" id="irB-dR-Oye"/>
+                            <constraint firstAttribute="trailing" secondItem="g2C-M8-Y7w" secondAttribute="trailing" id="qCr-Gr-oDj"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GbT-63-HG5"/>
+                                <exclude reference="dCf-RG-qUl"/>
+                                <exclude reference="irB-dR-Oye"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcP-qt-jNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
