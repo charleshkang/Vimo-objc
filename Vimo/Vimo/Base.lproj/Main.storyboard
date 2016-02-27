@@ -76,16 +76,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2C-M8-Y7w">
-                                <rect key="frame" x="0.0" y="501" width="600" height="99"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="99" id="kPY-ne-tGS"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-Sb-cRu">
                                 <rect key="frame" x="0.0" y="64" width="600" height="437"/>
                                 <color key="backgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2C-M8-Y7w">
+                                <rect key="frame" x="0.0" y="501" width="600" height="99"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yC-I4-XwO">
+                                        <rect key="frame" x="273" y="22" width="56" height="56"/>
+                                        <state key="normal" image="Play"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFN-7H-cFF">
+                                        <rect key="frame" x="339" y="38" width="50" height="23"/>
+                                        <state key="normal" image="Next"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIU-GK-Vay">
+                                        <rect key="frame" x="214" y="38" width="49" height="23"/>
+                                        <state key="normal" image="Previous"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1333333333" green="0.12941176469999999" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="7yC-I4-XwO" firstAttribute="centerY" secondItem="g2C-M8-Y7w" secondAttribute="centerY" id="2ZX-PB-M3a"/>
+                                    <constraint firstItem="hFN-7H-cFF" firstAttribute="centerY" secondItem="g2C-M8-Y7w" secondAttribute="centerY" id="B75-o4-vne"/>
+                                    <constraint firstItem="hFN-7H-cFF" firstAttribute="leading" secondItem="7yC-I4-XwO" secondAttribute="trailing" constant="30" id="EOz-jk-UEq"/>
+                                    <constraint firstItem="7yC-I4-XwO" firstAttribute="leading" secondItem="kIU-GK-Vay" secondAttribute="trailing" constant="30" id="Jrf-fO-aIa"/>
+                                    <constraint firstItem="kIU-GK-Vay" firstAttribute="centerY" secondItem="g2C-M8-Y7w" secondAttribute="centerY" id="Nd4-uU-QCQ"/>
+                                    <constraint firstAttribute="height" constant="99" id="kPY-ne-tGS"/>
+                                    <constraint firstItem="7yC-I4-XwO" firstAttribute="centerX" secondItem="g2C-M8-Y7w" secondAttribute="centerX" id="vnN-u9-ljn"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
@@ -183,6 +203,9 @@ to your favorite songs</string>
         </scene>
     </scenes>
     <resources>
+        <image name="Next" width="50" height="23"/>
+        <image name="Play" width="56" height="56"/>
+        <image name="Previous" width="49" height="23"/>
         <image name="login button-1" width="307" height="55"/>
     </resources>
 </document>
