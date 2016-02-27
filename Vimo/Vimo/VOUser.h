@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Spotify/Spotify.h>
+#import "VOPlaylistTableViewController.h"
 
 @interface VOUser : NSObject
 
@@ -16,5 +17,7 @@
 
 @property (nonatomic) SPTUser *spotifyUser;
 @property (nonatomic) SPTSession *spotifySession;
+
+@property (nonatomic) VOPlaylistTableViewController *playlistsVC;
 
 @end

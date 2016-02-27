@@ -1,15 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JRe-hs-QmA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GwC-x3-bN6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="Osaka.ttf">
-            <string>Osaka</string>
+        <mutableArray key="SignikaNegative-Regular.ttf">
+            <string>SignikaNegative-Regular</string>
+            <string>SignikaNegative-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="2Q8-fd-zJK">
+            <objects>
+                <navigationController id="GwC-x3-bN6" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qDF-nz-Hwd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QDc-Im-fwV" kind="relationship" relationship="rootViewController" id="iVn-Qg-AlK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ETv-3n-ZAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-622" y="-1638"/>
+        </scene>
+        <!--Playlist Table View Controller-->
+        <scene sceneID="NX3-Ip-cle">
+            <objects>
+                <tableViewController storyboardIdentifier="playlistsVC" id="QDc-Im-fwV" customClass="VOPlaylistTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="279" sectionHeaderHeight="28" sectionFooterHeight="28" id="e1J-2E-2ha">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" rowHeight="279" id="E22-3R-0Ax" customClass="VOCustomTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="279"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E22-3R-0Ax" id="XSz-ZB-pWR">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QDc-Im-fwV" id="TUW-t5-qQD"/>
+                            <outlet property="delegate" destination="QDc-Im-fwV" id="AkN-Ek-rN0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wI1-M9-ljk"/>
+                    <connections>
+                        <outlet property="tableView" destination="e1J-2E-2ha" id="AWx-Qu-1rH"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kkh-6l-aEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36" y="-1638"/>
+        </scene>
         <!--LoginVC-->
         <scene sceneID="3LM-EL-etU">
             <objects>
@@ -26,26 +75,37 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vimo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSi-GN-UGF">
-                                        <rect key="frame" x="49" y="141" width="503" height="59"/>
-                                        <fontDescription key="fontDescription" name="Osaka" family="Osaka" pointSize="50"/>
+                                        <rect key="frame" x="49" y="89" width="503" height="99"/>
+                                        <fontDescription key="fontDescription" name="SignikaNegative-Regular" family="Signika Negative" pointSize="80"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ili-rF-DZs">
-                                        <rect key="frame" x="178" y="518" width="244" height="44"/>
-                                        <state key="normal" image="log_in-mobile-1"/>
+                                        <rect key="frame" x="147" y="507" width="307" height="55"/>
+                                        <state key="normal" image="login button"/>
                                         <connections>
                                             <action selector="userLoggedInWithSpotify:" destination="JRe-hs-QmA" eventType="touchUpInside" id="ue5-PV-Gw6"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPq-01-cnS">
+                                        <rect key="frame" x="40" y="198" width="520" height="62"/>
+                                        <string key="text">change the way you listen
+to your favorite songs</string>
+                                        <fontDescription key="fontDescription" name="SignikaNegative-Regular" family="Signika Negative" pointSize="25"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.16144905892729833" green="0.35635863973521231" blue="0.66274509800000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.066666666666666666" green="0.29803921568627451" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="ili-rF-DZs" secondAttribute="bottom" constant="38" id="4MM-6N-MZp"/>
-                                    <constraint firstItem="bSi-GN-UGF" firstAttribute="centerY" secondItem="r1R-gL-xJv" secondAttribute="centerY" constant="-129.5" id="4dJ-O5-m2Q"/>
+                                    <constraint firstItem="bSi-GN-UGF" firstAttribute="centerY" secondItem="r1R-gL-xJv" secondAttribute="centerY" constant="-161.5" id="4dJ-O5-m2Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="xPq-01-cnS" secondAttribute="trailing" constant="40" id="5eV-iZ-W33"/>
                                     <constraint firstItem="bSi-GN-UGF" firstAttribute="leading" secondItem="r1R-gL-xJv" secondAttribute="leading" constant="49" id="JlV-5L-PVR"/>
                                     <constraint firstItem="ili-rF-DZs" firstAttribute="centerX" secondItem="r1R-gL-xJv" secondAttribute="centerX" id="X8V-R2-ikF"/>
+                                    <constraint firstItem="xPq-01-cnS" firstAttribute="leading" secondItem="r1R-gL-xJv" secondAttribute="leading" constant="40" id="ddr-a7-7vV"/>
                                     <constraint firstAttribute="trailing" secondItem="bSi-GN-UGF" secondAttribute="trailing" constant="48" id="ih1-52-ctM"/>
+                                    <constraint firstItem="xPq-01-cnS" firstAttribute="top" secondItem="bSi-GN-UGF" secondAttribute="bottom" constant="10" id="oEF-pQ-x4y"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -63,10 +123,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vVw-Nq-GZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="130" y="-773"/>
+            <point key="canvasLocation" x="-622" y="-2318"/>
         </scene>
     </scenes>
     <resources>
-        <image name="log_in-mobile-1" width="244" height="44"/>
+        <image name="login button" width="307" height="55"/>
     </resources>
 </document>

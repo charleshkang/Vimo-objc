@@ -10,6 +10,7 @@
 #import "VOKeys.h"
 #import "VOUser.h"
 
+
 #import <Spotify/Spotify.h>
 
 @interface VOLoginVC ()
@@ -19,6 +20,7 @@ SPTAuthViewDelegate
 
 @property (nonatomic) SPTAuthViewController *authViewController;
 @property (nonatomic) VOUser *user;
+@property (nonatomic) SPTArtist *genres;
 
 @end
 
@@ -47,12 +49,12 @@ SPTAuthViewDelegate
 - (IBAction)userLoggedInWithSpotify:(id)sender
 {
     
-    //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    //    if (self.user) {
-    //        [defaults setBool:YES forKey:@"hasLaunchedOnce"];
-    //        [defaults setBool:YES forKey:@"UserLoggedIn"];
-    //        [defaults synchronize];
-    //    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (self.user) {
+        [defaults setBool:YES forKey:@"hasLaunchedOnce"];
+        [defaults setBool:YES forKey:@"UserLoggedIn"];
+        [defaults synchronize];
+    }
     
     [self login];
     [self checkIfSessionIsValid];
@@ -68,6 +70,9 @@ SPTAuthViewDelegate
 
 - (void)authenticationViewController:(SPTAuthViewController *)authenticationViewController didLoginWithSession:(SPTSession *)session
 {
+    VOPlaylistTableViewController *playlistsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"playlistsVC"];
+    [self.navigationController pushViewController:playlistsVC animated:YES];
+    
     [[VOUser user] handle:session];
     NSLog(@"Session Granted %@", session);
     
@@ -95,7 +100,7 @@ SPTAuthViewDelegate
             return;
         }
         
-        //        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self.navigationController popToRootViewControllerAnimated:NO];
     }];
 }
 

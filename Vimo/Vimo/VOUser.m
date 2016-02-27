@@ -31,6 +31,8 @@ static VOUser *user = nil;
     [SPTRequest userInformationForUserInSession:session callback:^(NSError *error, id object) {
         if (!error) {
             self.spotifyUser = (SPTUser *)object;
+            [self.playlistsVC reloadWithPlaylists];
+
         } else {
             NSLog(@"Error: %@", error);
         }

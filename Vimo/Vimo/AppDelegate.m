@@ -20,6 +20,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if (![defaults boolForKey:@"hasLaunchedOnce"]) {
+        VOLoginVC *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"loginViewController"];
+        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
+        self.window.rootViewController = navigationController;
+    } else if ([defaults boolForKey:@"hasLaunchedOnce"] && [defaults boolForKey:@"UserLoggedIn"]) {
+        VOPlaylistTableViewController *playlistsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"playlistsVC"];
+        
+        self.window.rootViewController = playlistsVC;
+    }
+    
+    VOPlaylistTableViewController *playlistSelectionVC = [VOPlaylistTableViewController new];
+    
+    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:playlistSelectionVC];
+
+    
     // Spotify Authorization Initializers
     SPTAuth *auth = [SPTAuth defaultInstance];
     auth.clientID = @kClientId;
@@ -40,7 +57,7 @@
     NSLog(@"Session: %@", auth.sessionUserDefaultsKey);
     
     if(auth.session == nil || ![auth.session isValid]) {
-        
+        [navVC pushViewController:[VOLoginVC new] animated:NO];
     }
     return YES;
 }
