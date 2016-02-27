@@ -20,8 +20,8 @@
 		BFD7495F1C813EC8004CF3FE /* VOPlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD7495E1C813EC8004CF3FE /* VOPlaylistTableViewController.m */; };
 		BFD749631C814B0A004CF3FE /* VOCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD749621C814B0A004CF3FE /* VOCustomTableViewCell.m */; };
 		BFD749661C81525F004CF3FE /* VOCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD749581C813DDD004CF3FE /* VOCustomTableViewCell.xib */; };
+		BFD749691C817452004CF3FE /* VOMusicPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD749681C817452004CF3FE /* VOMusicPlayerViewController.m */; };
 		BFE4273F1C80462600AAAAA9 /* SignikaNegative-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE4273E1C80462600AAAAA9 /* SignikaNegative-Regular.ttf */; };
-		BFE4276E1C80ED9B00AAAAA9 /* kygo.png in Resources */ = {isa = PBXBuildFile; fileRef = BFE4276D1C80ED9B00AAAAA9 /* kygo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,8 +46,9 @@
 		BFD7495E1C813EC8004CF3FE /* VOPlaylistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPlaylistTableViewController.m; sourceTree = "<group>"; };
 		BFD749611C814B0A004CF3FE /* VOCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOCustomTableViewCell.h; sourceTree = "<group>"; };
 		BFD749621C814B0A004CF3FE /* VOCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOCustomTableViewCell.m; sourceTree = "<group>"; };
+		BFD749671C817452004CF3FE /* VOMusicPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOMusicPlayerViewController.h; sourceTree = "<group>"; };
+		BFD749681C817452004CF3FE /* VOMusicPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOMusicPlayerViewController.m; sourceTree = "<group>"; };
 		BFE4273E1C80462600AAAAA9 /* SignikaNegative-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignikaNegative-Regular.ttf"; sourceTree = "<group>"; };
-		BFE4276D1C80ED9B00AAAAA9 /* kygo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kygo.png; sourceTree = "<group>"; };
 		D1CC1BD9FB1599791F612DA6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F659938A990139EB21CF6356 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +94,6 @@
 				BFE427401C8048F100AAAAA9 /* Model */,
 				BFE427411C8048FA00AAAAA9 /* Controller */,
 				BF0D71021C7EEAE800C4EDEB /* Assets.xcassets */,
-				BFE4276D1C80ED9B00AAAAA9 /* kygo.png */,
 				BF0D71041C7EEAE800C4EDEB /* LaunchScreen.storyboard */,
 				BF0D70F61C7EEAE800C4EDEB /* Supporting Files */,
 			);
@@ -127,6 +127,8 @@
 				BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */,
 				BFD7495D1C813EC8004CF3FE /* VOPlaylistTableViewController.h */,
 				BFD7495E1C813EC8004CF3FE /* VOPlaylistTableViewController.m */,
+				BFD749671C817452004CF3FE /* VOMusicPlayerViewController.h */,
+				BFD749681C817452004CF3FE /* VOMusicPlayerViewController.m */,
 				BFD749611C814B0A004CF3FE /* VOCustomTableViewCell.h */,
 				BFD749621C814B0A004CF3FE /* VOCustomTableViewCell.m */,
 				BFD749581C813DDD004CF3FE /* VOCustomTableViewCell.xib */,
@@ -219,7 +221,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF0D71061C7EEAE800C4EDEB /* LaunchScreen.storyboard in Resources */,
-				BFE4276E1C80ED9B00AAAAA9 /* kygo.png in Resources */,
 				BF0D71031C7EEAE800C4EDEB /* Assets.xcassets in Resources */,
 				BF0D71011C7EEAE800C4EDEB /* Main.storyboard in Resources */,
 				BFE4273F1C80462600AAAAA9 /* SignikaNegative-Regular.ttf in Resources */,
@@ -268,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF0D71141C7F8E4900C4EDEB /* VOLoginVC.m in Sources */,
+				BFD749691C817452004CF3FE /* VOMusicPlayerViewController.m in Sources */,
 				BF0D70FB1C7EEAE800C4EDEB /* AppDelegate.m in Sources */,
 				BF0D70F81C7EEAE800C4EDEB /* main.m in Sources */,
 				BFD749631C814B0A004CF3FE /* VOCustomTableViewCell.m in Sources */,
@@ -384,6 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -401,6 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

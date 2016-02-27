@@ -8,11 +8,15 @@
 
 #import "VOPlaylistTableViewController.h"
 #import "VOCustomTableViewCell.h"
+#import "VOMusicPlayerViewController.h"
 #import "VOUser.h"
 
 #import <Spotify/Spotify.h>
 
 @interface VOPlaylistTableViewController ()
+<
+SPTAudioStreamingDelegate
+>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) VOUser *user;
@@ -20,11 +24,15 @@
 @property (nonatomic) NSInteger currentSongIndex;
 
 @property (nonatomic) VOPlaylistTableViewController *musicVC;
+@property (nonatomic) VOMusicPlayerViewController *musicPlayerVC;
 
-@property (nonatomic)SPTPlaylistSnapshot *currentPlaylist;
-@property (nonatomic)NSMutableArray *trackURIs;
-@property (nonatomic)SPTTrack *currentTrack;
-@property (nonatomic)SPTArtist *currentArtist;
+@property (nonatomic) SPTPlaylistSnapshot *currentPlaylist;
+@property (nonatomic) NSMutableArray *trackURIs;
+@property (nonatomic) SPTTrack *currentTrack;
+@property (nonatomic) SPTArtist *currentArtist;
+@property (nonatomic) SPTPartialAlbum *album;
+@property (nonatomic) UIImageView *coverArt;
+
 
 @end
 
@@ -38,6 +46,7 @@
 {
     [super viewDidLoad];
     
+    self.navigationController.title = @"Your Playlists";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 15.0;
     
@@ -54,6 +63,7 @@
     self.playlists = [NSMutableArray new];
     
     [self reloadWithPlaylists];
+    [self handleNewSession];
 }
 
 #pragma mark - Table view data source
@@ -78,10 +88,29 @@
     playlistName = partialPlaylist.name;
     NSLog(@"Playlists: %@", playlistName);
     [cell.playlistLabel setText:playlistName];
-//    cell.playlistLabel.text = [self.playlists objectAtIndex:indexPath.row];
-
-
+    
+//    if ([self.currentTrack.album.covers count] > 0) {
+//        SPTImage* image = self.currentTrack.album.largestCover;
+//        dispatch_async(dispatch_get_global_queue(0,0), ^{
+//            NSData * data = [[NSData alloc] initWithContentsOfURL: image.imageURL];
+//            if ( data == nil ){
+//                NSLog(@"Image of track %@ has no data", self.currentTrack.name);
+//                return;
+//            }
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                cell.playlistCoverImage.image = [UIImage imageWithData: data];
+//            });
+//        });
+//    }
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+     VOMusicPlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"musicPlayerVC"];
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
@@ -96,6 +125,28 @@
 
 #pragma mark - Spotify Playlist Implementation
 
+
+-(void)handleNewSession {
+    SPTAuth *auth = [SPTAuth defaultInstance];
+    self.currentSongIndex = 0;
+    if (self.audioPlayer == nil) {
+        self.audioPlayer = [[SPTAudioStreamingController alloc] initWithClientId:auth.clientID];
+        SPTVolume volume = 0.5;
+        [self.audioPlayer setVolume:volume callback:^(NSError *error) {
+            
+        }];
+        //self.audioPlayer.diskCache = [[SPTDiskCache alloc] initWithCapacity:1024 * 1024 * 64];
+    }
+    
+    [self.audioPlayer loginWithSession:auth.session callback:^(NSError *error) {
+        
+        if (error != nil) {
+            NSLog(@"*** Enabling playback got error: %@", error);
+            return;
+        }
+    }
+     ];}
+
 - (void)fetchPlaylistPageForSession:(SPTSession *)session error:(NSError *)error object:(id)object
 {
     if (error) {
@@ -106,7 +157,6 @@
             
             for (SPTPartialPlaylist *playlist in playlistList.items) {
                 [self.playlists addObject:playlist];
-                NSLog(@"playlists: %@", playlist);
             }
             [self.tableView reloadData];
         }
@@ -119,4 +169,5 @@
         [self fetchPlaylistPageForSession:self.user.spotifySession error:error object:object];
     }];
 }
+
 @end

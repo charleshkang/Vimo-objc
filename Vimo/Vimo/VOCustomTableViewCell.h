@@ -10,7 +10,6 @@
 
 @interface VOCustomTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *playlistCoverImage;
 @property (weak, nonatomic) IBOutlet UILabel *playlistLabel;
 
 @end

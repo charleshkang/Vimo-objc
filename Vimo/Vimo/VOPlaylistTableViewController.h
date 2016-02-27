@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Spotify/Spotify.h>
 
 @interface VOPlaylistTableViewController : UITableViewController
 
 @property (nonatomic) VOPlaylistTableViewController *playlistsVC;
 @property (nonatomic) NSMutableArray *playlists;
+@property (nonatomic) SPTSession *session;
+
+@property (nonatomic) SPTAudioStreamingController *audioPlayer;
 
 -(void)reloadWithPlaylists;
 

@@ -20,14 +20,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="QDc-Im-fwV" kind="relationship" relationship="rootViewController" id="iVn-Qg-AlK"/>
+                        <segue destination="QDc-Im-fwV" kind="relationship" relationship="rootViewController" id="BbI-9E-USx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ETv-3n-ZAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-622" y="-1638"/>
         </scene>
-        <!--Playlist Table View Controller-->
+        <!--Playlists-->
         <scene sceneID="NX3-Ip-cle">
             <objects>
                 <tableViewController storyboardIdentifier="playlistsVC" id="QDc-Im-fwV" customClass="VOPlaylistTableViewController" sceneMemberID="viewController">
@@ -35,14 +35,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.76526886544980188" green="0.91522450223350582" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIdentifier" rowHeight="279" id="E22-3R-0Ax" customClass="VOCustomTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cellIdentifier" rowHeight="279" id="E22-3R-0Ax" customClass="VOCustomTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="600" height="279"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E22-3R-0Ax" id="XSz-ZB-pWR">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Tt9-nV-1wv" kind="show" id="bid-Qr-fPh"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -50,14 +54,32 @@
                             <outlet property="delegate" destination="QDc-Im-fwV" id="AkN-Ek-rN0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="wI1-M9-ljk"/>
+                    <navigationItem key="navigationItem" title="Playlists" id="fB4-J8-Nr2" userLabel="Playlists"/>
                     <connections>
                         <outlet property="tableView" destination="e1J-2E-2ha" id="AWx-Qu-1rH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kkh-6l-aEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="-1638"/>
+            <point key="canvasLocation" x="64" y="-1638"/>
+        </scene>
+        <!--Music Player View Controller-->
+        <scene sceneID="xfA-9L-iuQ">
+            <objects>
+                <viewController storyboardIdentifier="musicPlayerVC" id="Tt9-nV-1wv" customClass="VOMusicPlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="obV-p6-SEj"/>
+                        <viewControllerLayoutGuide type="bottom" id="XEI-ZQ-1Kd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Obe-Jn-gKM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcP-qt-jNN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="-1638"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="3LM-EL-etU">
@@ -82,7 +104,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ili-rF-DZs">
                                         <rect key="frame" x="147" y="507" width="307" height="55"/>
-                                        <state key="normal" image="login button"/>
+                                        <state key="normal" image="login button-1"/>
                                         <connections>
                                             <action selector="userLoggedInWithSpotify:" destination="JRe-hs-QmA" eventType="touchUpInside" id="ue5-PV-Gw6"/>
                                         </connections>
@@ -127,6 +149,6 @@ to your favorite songs</string>
         </scene>
     </scenes>
     <resources>
-        <image name="login button" width="307" height="55"/>
+        <image name="login button-1" width="307" height="55"/>
     </resources>
 </document>

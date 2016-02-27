@@ -31,17 +31,26 @@ SPTAuthViewDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
     SPTAuth *auth = [SPTAuth defaultInstance];
     
     if (auth.hasTokenRefreshService) {
         [self renewAccessToken];
         return;
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - Spotify Login & Auth Implementation
@@ -53,6 +62,8 @@ SPTAuthViewDelegate
     if (self.user) {
         [defaults setBool:YES forKey:@"hasLaunchedOnce"];
         [defaults setBool:YES forKey:@"UserLoggedIn"];
+        VOPlaylistTableViewController *playlistVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"playlistsVC"];
+        [self presentViewController:playlistVC animated:YES completion:nil];
         [defaults synchronize];
     }
     
