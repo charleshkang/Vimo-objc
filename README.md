@@ -10,7 +10,7 @@ I'm going to be working on this as much as I can, but if you happen to find this
 
 <strong>Technical Stuff & ETC</strong>
 <ul>
-  <li> Vimo is written in Objective-C </li>
+  <li> Vimo is written in Objective-C</li>
   <li> You will need a Spotify premium account to use this app </li>
   <li> Wireframing all done in Sketch 3 </li>
 </ul>
