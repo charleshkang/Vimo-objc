@@ -54,7 +54,6 @@
     auth.tokenRefreshURL = [NSURL URLWithString:@kTokenRefreshServiceURL];
 #endif
     auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
-    NSLog(@"Session: %@", auth.sessionUserDefaultsKey);
     
     if(auth.session == nil || ![auth.session isValid]) {
         [navVC pushViewController:[VOLoginVC new] animated:NO];
