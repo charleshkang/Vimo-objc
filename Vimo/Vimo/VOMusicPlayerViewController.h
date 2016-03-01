@@ -12,6 +12,6 @@
 @interface VOMusicPlayerViewController : UIViewController
 
 @property (nonatomic) SPTSession *session;
-
+@property (nonatomic)SPTAudioStreamingController *audioPlayer;
 
 @end
