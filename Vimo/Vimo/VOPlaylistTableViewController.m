@@ -89,26 +89,16 @@ SPTAudioStreamingDelegate
     NSLog(@"Playlists: %@", playlistName);
     [cell.playlistLabel setText:playlistName];
     
-//    if ([self.currentTrack.album.covers count] > 0) {
-//        SPTImage* image = self.currentTrack.album.largestCover;
-//        dispatch_async(dispatch_get_global_queue(0,0), ^{
-//            NSData * data = [[NSData alloc] initWithContentsOfURL: image.imageURL];
-//            if ( data == nil ){
-//                NSLog(@"Image of track %@ has no data", self.currentTrack.name);
-//                return;
-//            }
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                cell.playlistCoverImage.image = [UIImage imageWithData: data];
-//            });
-//        });
-//    }
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     VOMusicPlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"musicPlayerVC"];
+    if(!self.musicPlayerVC){
+        self.musicPlayerVC = [VOMusicPlayerViewController new];
+    }
+    
+    VOMusicPlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"musicPlayerVC"];
     
     if (self.currentSongIndex != indexPath.row) {
         self.currentSongIndex = indexPath.row;
@@ -121,8 +111,7 @@ SPTAudioStreamingDelegate
 
 #pragma mark - Spotify Playlist Implementation
 
-
--(void)handleNewSession {
+- (void)handleNewSession {
     SPTAuth *auth = [SPTAuth defaultInstance];
     self.currentSongIndex = 0;
     if (self.audioPlayer == nil) {
@@ -131,9 +120,7 @@ SPTAudioStreamingDelegate
         [self.audioPlayer setVolume:volume callback:^(NSError *error) {
             
         }];
-        //self.audioPlayer.diskCache = [[SPTDiskCache alloc] initWithCapacity:1024 * 1024 * 64];
     }
-    
     [self.audioPlayer loginWithSession:auth.session callback:^(NSError *error) {
         
         if (error != nil) {

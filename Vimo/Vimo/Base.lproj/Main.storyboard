@@ -71,11 +71,11 @@
                         <viewControllerLayoutGuide type="top" id="obV-p6-SEj"/>
                         <viewControllerLayoutGuide type="bottom" id="XEI-ZQ-1Kd"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Obe-Jn-gKM">
+                    <view key="view" contentMode="scaleToFill" id="Obe-Jn-gKM" userLabel="Main View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jQ-tS-3yK">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jQ-tS-3yK" userLabel="Music Status View">
                                 <rect key="frame" x="160" y="463" width="285" height="137"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIU-GK-Vay">
@@ -138,15 +138,67 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E2-um-gyf" userLabel="Music Elements View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="391"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-zG-26f">
+                                        <rect key="frame" x="200" y="40" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="oC6-bM-ESM"/>
+                                            <constraint firstAttribute="width" constant="200" id="xy8-6n-qUI"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nH-YS-JWj">
+                                        <rect key="frame" x="0.0" y="248" width="600" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEO-ry-btq">
+                                        <rect key="frame" x="0.0" y="277" width="600" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="gUW-zG-26f" firstAttribute="top" secondItem="3E2-um-gyf" secondAttribute="top" constant="40" id="33g-J0-Eh4"/>
+                                    <constraint firstItem="gUW-zG-26f" firstAttribute="leading" secondItem="3E2-um-gyf" secondAttribute="leading" constant="200" id="9A3-io-fck"/>
+                                    <constraint firstItem="9nH-YS-JWj" firstAttribute="leading" secondItem="3E2-um-gyf" secondAttribute="leading" id="UP7-r0-C3l"/>
+                                    <constraint firstItem="HEO-ry-btq" firstAttribute="leading" secondItem="3E2-um-gyf" secondAttribute="leading" id="Z8n-rd-q9v"/>
+                                    <constraint firstItem="gUW-zG-26f" firstAttribute="centerX" secondItem="3E2-um-gyf" secondAttribute="centerX" id="aKz-8P-KuN"/>
+                                    <constraint firstItem="9nH-YS-JWj" firstAttribute="top" secondItem="gUW-zG-26f" secondAttribute="bottom" constant="8" id="gX7-DH-cjR"/>
+                                    <constraint firstAttribute="trailing" secondItem="HEO-ry-btq" secondAttribute="trailing" id="hsk-97-aQ6"/>
+                                    <constraint firstAttribute="trailing" secondItem="9nH-YS-JWj" secondAttribute="trailing" id="o6G-MA-e8P"/>
+                                    <constraint firstItem="HEO-ry-btq" firstAttribute="top" secondItem="9nH-YS-JWj" secondAttribute="bottom" constant="8" id="snd-Rm-Z5N"/>
+                                    <constraint firstAttribute="trailing" secondItem="gUW-zG-26f" secondAttribute="trailing" constant="200" id="vcK-J5-hSB"/>
+                                    <constraint firstItem="gUW-zG-26f" firstAttribute="centerX" secondItem="3E2-um-gyf" secondAttribute="centerX" id="wzz-Th-EwG"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9A3-io-fck"/>
+                                        <exclude reference="aKz-8P-KuN"/>
+                                        <exclude reference="vcK-J5-hSB"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="3E2-um-gyf" firstAttribute="top" secondItem="obV-p6-SEj" secondAttribute="bottom" id="7qF-UE-Owr"/>
+                            <constraint firstAttribute="trailing" secondItem="3E2-um-gyf" secondAttribute="trailing" id="L7d-8P-0UY"/>
                             <constraint firstItem="2jQ-tS-3yK" firstAttribute="centerY" secondItem="Obe-Jn-gKM" secondAttribute="centerY" constant="231.5" id="ZAi-4c-fBh"/>
+                            <constraint firstItem="2jQ-tS-3yK" firstAttribute="top" secondItem="3E2-um-gyf" secondAttribute="bottom" constant="8" id="pOM-Xd-IWF"/>
                             <constraint firstItem="2jQ-tS-3yK" firstAttribute="centerX" secondItem="Obe-Jn-gKM" secondAttribute="centerX" constant="2" id="rU4-lo-idt"/>
+                            <constraint firstItem="3E2-um-gyf" firstAttribute="leading" secondItem="Obe-Jn-gKM" secondAttribute="leading" id="rsh-Su-nfK"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="artistNameLabel" destination="HEO-ry-btq" id="3KQ-a7-Esm"/>
                         <outlet property="playPauseButton" destination="7yC-I4-XwO" id="UwL-wg-IVr"/>
+                        <outlet property="songImageView" destination="gUW-zG-26f" id="iew-od-ZMh"/>
+                        <outlet property="songNameLabel" destination="9nH-YS-JWj" id="rrX-CE-OCn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcP-qt-jNN" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -44,7 +44,7 @@
     auth.redirectURL = [NSURL URLWithString:@kCallbackURL];
     
     auth.requestedScopes = @[SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope,
-                              SPTAuthUserLibraryReadScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope, SPTAuthUserLibraryModifyScope];
+                             SPTAuthUserReadPrivateScope, SPTAuthUserLibraryReadScope];
     
     
 #ifdef kTokenSwapServiceURL
