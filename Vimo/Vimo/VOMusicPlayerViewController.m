@@ -43,6 +43,8 @@ SPTAudioStreamingDelegate
     
     self.playImage = [UIImage imageNamed:@"play"];
     self.pauseImage = [UIImage imageNamed:@"pause"];
+    
+    [self setPlaylistWithPartialPlaylist:self.partialPlaylist];
 }
 
 #pragma mark - Spotify Player Methods
@@ -70,6 +72,29 @@ SPTAudioStreamingDelegate
         }];
     }
 }
+
+// sample
+//    if(partialPlaylist){
+//        [SPTRequest requestItemAtURI:partialPlaylist.uri withSession:self.session callback:^(NSError *error, id object) {
+//            if([object isKindOfClass:[SPTPlaylistSnapshot class]]){
+//                self.currentPlaylist = (SPTPlaylistSnapshot *)object;
+//                [self.trackURIs removeAllObjects];
+//                NSLog(@"PLAYLIST SIZE: %lu", (unsigned long)self.currentPlaylist.trackCount);
+//                unsigned int i = 0;
+//                if(self.currentPlaylist.trackCount > 0){
+//                    for(SPTTrack *track in self.currentPlaylist.tracksForPlayback){
+//                        NSLog(@"GOT SONG:%u %@ ", i, track.name);
+//                        i++;
+//                        [self.trackURIs addObject:track.uri];
+//                    }
+//                    [self handleNewSession];
+//                    NSLog(@"uris: %@", self.trackURIs);
+//                }
+//            }
+//        }];
+//    }
+//}
+
 
 // This is fine
 - (void)handleNewSession

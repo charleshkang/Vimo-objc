@@ -86,16 +86,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!self.musicPlayerVC){
-        self.musicPlayerVC = [VOMusicPlayerViewController new];
-    }
-    
     VOMusicPlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"musicPlayerVC"];
-    
+    vc.partialPlaylist = [self.playlists objectAtIndex:indexPath.row];
     if (self.currentSongIndex != indexPath.row) {
         self.currentSongIndex = indexPath.row;
-        self.musicPlayerVC.session = self.user.spotifySession;
-        [self.musicPlayerVC setPlaylistWithPartialPlaylist:(SPTPartialPlaylist *)[self.playlists objectAtIndex:indexPath.row]];
+        vc.session = self.user.spotifySession;
+//        [vc setPlaylistWithPartialPlaylist:(SPTPartialPlaylist *)[self.playlists objectAtIndex:indexPath.row]];
         NSLog(@"Selected Playlist: %@", [self.playlists objectAtIndex:indexPath.row]);
     }
     [self.navigationController pushViewController:vc animated:YES];
