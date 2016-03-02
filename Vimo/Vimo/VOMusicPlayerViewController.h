@@ -17,6 +17,6 @@ SPTAudioStreamingPlaybackDelegate
 
 @property (nonatomic) SPTSession *session;
 
--(void)setPlaylistWithPartialPlaylist:(SPTPartialPlaylist *)partialPlaylist;
+- (void)setPlaylistWithPartialPlaylist:(SPTPartialPlaylist *)partialPlaylist;
 
 @end

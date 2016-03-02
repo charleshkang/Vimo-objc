@@ -10,6 +10,8 @@
 #import "VOKeys.h"
 #import "VOLoginVC.h"
 #import "VOUser.h"
+#import "VOPlaylistTableViewController.h"
+
 #import <Spotify/Spotify.h>
 
 @interface AppDelegate ()
@@ -33,9 +35,9 @@
         self.window.rootViewController = playlistsVC;
     }
     
-    VOPlaylistTableViewController *playlistSelectionVC = [VOPlaylistTableViewController new];
+//    VOPlaylistTableViewController *playlistSelectionVC = [VOPlaylistTableViewController new];
     
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:playlistSelectionVC];
+//    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:playlistSelectionVC];
 
     
     // Spotify Authorization Initializers
@@ -54,28 +56,6 @@
     auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
     
     return YES;
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    SPTAuth *auth = [SPTAuth defaultInstance];
-    SPTAuthCallback authCallback = ^(NSError *error, SPTSession *session) {
-        
-        if (error != nil) {
-            NSLog(@"*** Auth error: %@", error);
-            return;
-        }
-
-        auth.session = session;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionUpdated" object:self];
-    };
-    
-    if ([auth canHandleURL:url]) {
-        [auth handleAuthCallbackWithTriggeredAuthURL:url callback:authCallback];
-        return YES;
-    }
-    
-    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -14,9 +14,6 @@
 #import <Spotify/Spotify.h>
 
 @interface VOPlaylistTableViewController ()
-<
-SPTAudioStreamingDelegate
->
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic) VOUser *user;
@@ -32,7 +29,6 @@ SPTAudioStreamingDelegate
 @property (nonatomic) SPTArtist *currentArtist;
 @property (nonatomic) SPTPartialAlbum *album;
 @property (nonatomic) UIImageView *coverArt;
-
 
 @end
 
@@ -63,7 +59,6 @@ SPTAudioStreamingDelegate
     self.playlists = [NSMutableArray new];
     
     [self reloadWithPlaylists];
-    [self handleNewSession];
 }
 
 #pragma mark - Table view data source
@@ -72,7 +67,6 @@ SPTAudioStreamingDelegate
 {
     return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -110,25 +104,6 @@ SPTAudioStreamingDelegate
 }
 
 #pragma mark - Spotify Playlist Implementation
-
-- (void)handleNewSession {
-    SPTAuth *auth = [SPTAuth defaultInstance];
-    self.currentSongIndex = 0;
-    if (self.audioPlayer == nil) {
-        self.audioPlayer = [[SPTAudioStreamingController alloc] initWithClientId:auth.clientID];
-        SPTVolume volume = 0.5;
-        [self.audioPlayer setVolume:volume callback:^(NSError *error) {
-            
-        }];
-    }
-    [self.audioPlayer loginWithSession:auth.session callback:^(NSError *error) {
-        
-        if (error != nil) {
-            NSLog(@"*** Enabling playback got error: %@", error);
-            return;
-        }
-    }
-     ];}
 
 - (void)fetchPlaylistPageForSession:(SPTSession *)session error:(NSError *)error object:(id)object
 {
