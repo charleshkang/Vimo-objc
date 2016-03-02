@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9ED963F6FA3ABE7658200DC6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC7A167C80DD410C32B6731 /* libPods.a */; };
-		BF00E84D1C878C410054FD92 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF00E84C1C878C410054FD92 /* Spotify.framework */; };
+		BF00E84F1C87ADA70054FD92 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF00E84E1C87ADA70054FD92 /* Spotify.framework */; };
 		BF0D70F81C7EEAE800C4EDEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D70F71C7EEAE800C4EDEB /* main.m */; };
 		BF0D70FB1C7EEAE800C4EDEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D70FA1C7EEAE800C4EDEB /* AppDelegate.m */; };
 		BF0D71011C7EEAE800C4EDEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0D70FF1C7EEAE800C4EDEB /* Main.storyboard */; };
@@ -26,7 +26,7 @@
 
 /* Begin PBXFileReference section */
 		5BC7A167C80DD410C32B6731 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF00E84C1C878C410054FD92 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		BF00E84E1C87ADA70054FD92 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		BF0D70F31C7EEAE800C4EDEB /* Vimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0D70F71C7EEAE800C4EDEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BF0D70F91C7EEAE800C4EDEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF0D71111C7F7FCE00C4EDEB /* AVFoundation.framework in Frameworks */,
-				BF00E84D1C878C410054FD92 /* Spotify.framework in Frameworks */,
+				BF00E84F1C87ADA70054FD92 /* Spotify.framework in Frameworks */,
 				9ED963F6FA3ABE7658200DC6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,7 +139,7 @@
 		CE2C7385D88879063F3201A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BF00E84C1C878C410054FD92 /* Spotify.framework */,
+				BF00E84E1C87ADA70054FD92 /* Spotify.framework */,
 				BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */,
 				5BC7A167C80DD410C32B6731 /* libPods.a */,
 			);

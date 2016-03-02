@@ -24,7 +24,6 @@
 @property (nonatomic) VOMusicPlayerViewController *musicPlayerVC;
 
 @property (nonatomic) SPTPlaylistSnapshot *currentPlaylist;
-@property (nonatomic) NSMutableArray *trackURIs;
 @property (nonatomic) SPTTrack *currentTrack;
 @property (nonatomic) SPTArtist *currentArtist;
 @property (nonatomic) SPTPartialAlbum *album;
@@ -80,7 +79,6 @@
     NSString *playlistName;
     SPTPartialPlaylist *partialPlaylist = [self.playlists objectAtIndex:indexPath.row];
     playlistName = partialPlaylist.name;
-    NSLog(@"Playlists: %@", playlistName);
     [cell.playlistLabel setText:playlistName];
     
     return cell;
