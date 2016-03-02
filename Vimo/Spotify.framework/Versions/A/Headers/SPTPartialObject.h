@@ -16,8 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-/** Represents a "partial" object on the Spotify service. You can promote partial
- objects to a full objects using `SPTRequest`. */
+/** Represents the base class of a "partial" object on the Spotify service.. */
 @protocol SPTPartialObject <NSObject>
 
 ///----------------------------

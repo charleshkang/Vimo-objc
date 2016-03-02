@@ -47,6 +47,10 @@
 #import "SPTUser.h"
 #import "SPTListPage.h"
 #import "SPTFeaturedPlaylistList.h"
+#import "SPTFollow.h"
+#import "SPTBrowse.h"
+#import "SPTYourMusic.h"
+#import "SPTSearch.h"
 
 // Audio playback
 

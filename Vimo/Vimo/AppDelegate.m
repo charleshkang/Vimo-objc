@@ -10,6 +10,7 @@
 #import "VOKeys.h"
 #import "VOLoginVC.h"
 #import "VOUser.h"
+#import <Spotify/Spotify.h>
 
 @interface AppDelegate ()
 
@@ -40,12 +41,9 @@
     // Spotify Authorization Initializers
     SPTAuth *auth = [SPTAuth defaultInstance];
     auth.clientID = @kClientId;
-    
     auth.redirectURL = [NSURL URLWithString:@kCallbackURL];
-    
     auth.requestedScopes = @[SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope,
                              SPTAuthUserReadPrivateScope, SPTAuthUserLibraryReadScope];
-    
     
 #ifdef kTokenSwapServiceURL
     auth.tokenSwapURL = [NSURL URLWithString:@kTokenSwapServiceURL];
@@ -55,10 +53,29 @@
 #endif
     auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
     
-    if(auth.session == nil || ![auth.session isValid]) {
-        [navVC pushViewController:[VOLoginVC new] animated:NO];
-    }
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    SPTAuth *auth = [SPTAuth defaultInstance];
+    SPTAuthCallback authCallback = ^(NSError *error, SPTSession *session) {
+        
+        if (error != nil) {
+            NSLog(@"*** Auth error: %@", error);
+            return;
+        }
+
+        auth.session = session;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"sessionUpdated" object:self];
+    };
+    
+    if ([auth canHandleURL:url]) {
+        [auth handleAuthCallbackWithTriggeredAuthURL:url callback:authCallback];
+        return YES;
+    }
+    
+    return NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

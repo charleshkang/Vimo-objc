@@ -20,11 +20,13 @@
 
 @class SPTAuthViewController;
 
+/** A ViewController for managing the login flow inside your app. */
 @protocol SPTAuthViewDelegate
 
 /**
  The user logged in successfully.
 
+ @param authenticationViewController The view controller.
  @param session The session object with the new credentials. (Note that the session object in
 	the `SPTAuth` object passed upon initialization is also updated)
  */
@@ -33,6 +35,7 @@
 /**
  An error occured while logging in
  
+ @param authenticationViewController The view controller.
  @param error The error (Note that the session object in the `SPTAuth` object passed upon initialization
 	is cleared.)
  */
@@ -40,6 +43,7 @@
 
 /**
  User closed the login dialog.
+ @param authenticationViewController The view controller.
  */
 - (void) authenticationViewControllerDidCancelLogin:(SPTAuthViewController *)authenticationViewController;
 
@@ -49,13 +53,14 @@
  A authentication view controller
 
  To present the authentication dialog on top of your view controller, do like this:
- `
- authvc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
- authvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
- self.modalPresentationStyle = UIModalPresentationCurrentContext;
- self.definesPresentationContext = YES;
- [self presentViewController:authvc animated:NO completion:nil];
- `
+ 
+ ```
+	authvc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+	authvc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	self.modalPresentationStyle = UIModalPresentationCurrentContext;
+	self.definesPresentationContext = YES;
+	[self presentViewController:authvc animated:NO completion:nil];
+ ```
  */
 @interface SPTAuthViewController : UIViewController
 

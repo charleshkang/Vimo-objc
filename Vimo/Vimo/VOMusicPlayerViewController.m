@@ -15,11 +15,10 @@
 SPTAudioStreamingDelegate
 >
 
-@property (nonatomic) BOOL isPlaying;
-@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
-
 @property (nonatomic) UIImage *playImage;
 @property (nonatomic) UIImage *pauseImage;
+@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @property (nonatomic) SPTPlaylistSnapshot *currentPlaylist;
 @property (nonatomic) SPTPlayOptions *trackIndex;
@@ -27,10 +26,12 @@ SPTAudioStreamingDelegate
 @property (nonatomic) SPTTrack *currentTrack;
 @property (nonatomic) SPTArtist *currentArtist;
 @property (nonatomic) NSInteger currentSongIndex;
+@property (nonatomic) SPTAudioStreamingController *audioPlayer;
 
-@property (weak, nonatomic) IBOutlet UIImageView *songImageView;
-@property (weak, nonatomic) IBOutlet UILabel *songNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *coverView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+
 @end
 
 @implementation VOMusicPlayerViewController
@@ -40,15 +41,15 @@ SPTAudioStreamingDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Player";
-    
-    self.isPlaying = NO;
-    self.trackURIs = [NSMutableArray new];
+    self.titleLabel.text = @"Nothing Playing";
+    self.artistLabel.text = @"";
     self.currentSongIndex = 0;
-    
-    self.playImage = [UIImage imageNamed:@"play"];
-    self.pauseImage = [UIImage imageNamed:@"pause"];
-    [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self handleNewSession];
 }
 
 #pragma mark - Spotify Player Methods
@@ -75,77 +76,38 @@ SPTAudioStreamingDelegate
     }
 }
 
-- (void)handleNewSession
-{
-    SPTPlayOptions *trackIndex;
-    if ([self.currentTrack.album.covers count] > 0) {
-        SPTImage* image = self.currentTrack.album.largestCover;
-        dispatch_async(dispatch_get_global_queue(0,0), ^{
-            NSData * data = [[NSData alloc] initWithContentsOfURL: image.imageURL];
-            if ( data == nil ){
-                NSLog(@"Image of track %@ has no data", self.currentTrack.name);
-                return;
-            }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.songImageView.image = [UIImage imageWithData:data];
-                NSLog(@"Data:%@", image.imageURL);
-            });
-        });
-    }
-    
+- (void)handleNewSession {
     SPTAuth *auth = [SPTAuth defaultInstance];
-    //    self.currentSongIndex = 0;
+    
     if (self.audioPlayer == nil) {
         self.audioPlayer = [[SPTAudioStreamingController alloc] initWithClientId:auth.clientID];
         self.audioPlayer.playbackDelegate = self;
-        SPTVolume volume = 1.0;
-        [self.audioPlayer setVolume:volume callback:^(NSError *error) {
-        }];
+        self.audioPlayer.diskCache = [[SPTDiskCache alloc] initWithCapacity:1024 * 1024 * 64];
     }
+    
     [self.audioPlayer loginWithSession:auth.session callback:^(NSError *error) {
+        
         if (error != nil) {
             NSLog(@"*** Enabling playback got error: %@", error);
             return;
         }
-        [self.audioPlayer playURIs:self.trackURIs withOptions:(SPTPlayOptions *)trackIndex callback:^(NSError *error) {
-            if(error != nil){
-                NSLog(@"Error: %@", error);
+        
+        [self updateUI];
+        
+        NSURLRequest *playlistReq = [SPTPlaylistSnapshot createRequestForPlaylistWithURI:[NSURL URLWithString:@"spotify:user:cariboutheband:playlist:4Dg0J0ICj9kKTGDyFu0Cv4"]
+                                                                             accessToken:auth.session.accessToken
+                                                                                   error:nil];
+        
+        [[SPTRequest sharedHandler] performRequest:playlistReq callback:^(NSError *error, NSURLResponse *response, NSData *data) {
+            if (error != nil) {
+                NSLog(@"*** Failed to get playlist %@", error);
                 return;
             }
-            self.currentTrack = [self.currentPlaylist.tracksForPlayback objectAtIndex:self.currentSongIndex];
-            self.songNameLabel.text = self.currentTrack.name;
-            SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:self.currentSongIndex];
-            self.artistNameLabel.text = artist.name;
             
-        }
-        
-        ];}
-     
-     ];
-}
-- (void)togglePlaying:(id)sender
-{
-    if (self.audioPlayer.isPlaying) {
-        [self.audioPlayer setIsPlaying:NO callback:^(NSError *error) {
+            SPTPlaylistSnapshot *playlistSnapshot = [SPTPlaylistSnapshot playlistSnapshotFromData:data withResponse:response error:nil];
+            
+            [self.audioPlayer playURIs:playlistSnapshot.firstTrackPage.items fromIndex:0 callback:nil];
         }];
-        self.isPlaying = nil;
-        [_playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
-    } else {
-        [self.audioPlayer setIsPlaying:YES callback:^(NSError *error) {
-        }];
-        [_playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
-    }
-}
-
-- (IBAction)nextButtonTapped:(id)sender
-{
-    [self.audioPlayer skipNext:^(NSError *error) {
-    }];
-}
-
-- (IBAction)previousButtonTapped:(id)sender
-{
-    [self.audioPlayer skipPrevious:^(NSError *error) {
     }];
 }
 
@@ -153,7 +115,7 @@ SPTAudioStreamingDelegate
 {
     NSLog(@"started track");
     self.currentSongIndex = self.audioPlayer.currentTrackIndex;
-    [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
     [SPTTrack trackWithURI:trackUri session:self.session callback:^(NSError *error, SPTTrack *track) {
         self.currentTrack = track;
         NSURL *coverArtURL = self.currentTrack.album.largestCover.imageURL;
@@ -170,7 +132,7 @@ SPTAudioStreamingDelegate
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    self.songImageView.image = image;
+                    self.coverView.image = image;
                     if (image == nil) {
                         NSLog(@"Couldn't load cover image with error: %@", error);
                         return;
@@ -182,16 +144,103 @@ SPTAudioStreamingDelegate
      ];
 }
 
-#pragma mark - Music Player Methods
-
-- (IBAction)playPauseButtonTapped:(UIButton *)sender
+- (void)updateUI
 {
+    SPTAuth *auth = [SPTAuth defaultInstance];
     
+    if (self.audioPlayer.currentTrackURI == nil) {
+        self.coverView.image = nil;
+        return;
+    }
+    [SPTTrack trackWithURI:self.audioPlayer.currentTrackURI
+                   session:auth.session
+                  callback:^(NSError *error, SPTTrack *track) {
+                      
+                      self.titleLabel.text = track.name;
+                      
+                      SPTPartialArtist *artist = [track.artists objectAtIndex:0];
+                      self.artistLabel.text = artist.name;
+                      
+                      NSURL *imageURL = track.album.largestCover.imageURL;
+                      if (imageURL == nil) {
+                          NSLog(@"Album %@ doesn't have any images!", track.album);
+                          self.coverView.image = nil;
+                          return;
+                      }
+                      
+                      // Pop over to a background queue to load the image over the network.
+                      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                          NSError *error = nil;
+                          UIImage *image = nil;
+                          NSData *imageData = [NSData dataWithContentsOfURL:imageURL options:0 error:&error];
+                          
+                          if (imageData != nil) {
+                              image = [UIImage imageWithData:imageData];
+                          }
+                          
+                          
+                          // …and back to the main queue to display the image.
+                          dispatch_async(dispatch_get_main_queue(), ^{
+                              self.coverView.image = image;
+                              if (image == nil) {
+                                  NSLog(@"Couldn't load cover image with error: %@", error);
+                                  return;
+                              }
+                          });
+                          
+                      });
+                      
+                  }];
 }
 
-- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangePlaybackStatus:(BOOL)isPlaying
+
+- (IBAction)playButtonTapped:(id)sender
 {
+    [self.audioPlayer setIsPlaying:!self.audioPlayer.isPlaying callback:nil];
+    NSLog(@"Playing");
+}
+
+- (IBAction)pauseButtonTapped:(id)sender
+{
+    [self.audioPlayer setIsPlaying:!self.audioPlayer.isPlaying callback:nil];
+    NSLog(@"Paused");
+}
+
+- (IBAction)nextButtonTapped:(id)sender
+{
+    [self.audioPlayer skipNext:nil];
+    NSLog(@"Forward");
+}
+
+- (IBAction)previousButtonTapped:(id)sender
+{
+    [self.audioPlayer skipPrevious:nil];
+    NSLog(@"Back");
+}
+
+#pragma mark - Track Player Delegates
+
+- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didReceiveMessage:(NSString *)message {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message from Spotify"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+}
+
+- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didFailToPlayTrack:(NSURL *)trackUri {
+    NSLog(@"failed to play track: %@", trackUri);
+}
+
+- (void) audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata {
+    NSLog(@"track changed = %@", [trackMetadata valueForKey:SPTAudioStreamingMetadataTrackURI]);
+    [self updateUI];
+}
+
+- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangePlaybackStatus:(BOOL)isPlaying {
     NSLog(@"is playing = %d", isPlaying);
 }
+
 
 @end

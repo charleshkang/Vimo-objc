@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		9ED963F6FA3ABE7658200DC6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC7A167C80DD410C32B6731 /* libPods.a */; };
+		BF00E8431C877A340054FD92 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF00E8421C877A340054FD92 /* Spotify.framework */; };
 		BF0D70F81C7EEAE800C4EDEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D70F71C7EEAE800C4EDEB /* main.m */; };
 		BF0D70FB1C7EEAE800C4EDEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D70FA1C7EEAE800C4EDEB /* AppDelegate.m */; };
 		BF0D71011C7EEAE800C4EDEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0D70FF1C7EEAE800C4EDEB /* Main.storyboard */; };
 		BF0D71031C7EEAE800C4EDEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF0D71021C7EEAE800C4EDEB /* Assets.xcassets */; };
 		BF0D71061C7EEAE800C4EDEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF0D71041C7EEAE800C4EDEB /* LaunchScreen.storyboard */; };
-		BF0D710F1C7F7FC200C4EDEB /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0D710E1C7F7FC200C4EDEB /* Spotify.framework */; };
 		BF0D71111C7F7FCE00C4EDEB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */; };
 		BF0D71141C7F8E4900C4EDEB /* VOLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */; };
 		BF0D71171C7F903100C4EDEB /* VOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D71161C7F903100C4EDEB /* VOUser.m */; };
@@ -26,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		5BC7A167C80DD410C32B6731 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF00E8421C877A340054FD92 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		BF0D70F31C7EEAE800C4EDEB /* Vimo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vimo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF0D70F71C7EEAE800C4EDEB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BF0D70F91C7EEAE800C4EDEB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		BF0D71051C7EEAE800C4EDEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF0D71071C7EEAE800C4EDEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF0D710D1C7F7F2600C4EDEB /* VOKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOKeys.h; sourceTree = "<group>"; };
-		BF0D710E1C7F7FC200C4EDEB /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 		BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BF0D71121C7F8E4900C4EDEB /* VOLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLoginVC.h; sourceTree = "<group>"; };
 		BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLoginVC.m; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF0D71111C7F7FCE00C4EDEB /* AVFoundation.framework in Frameworks */,
-				BF0D710F1C7F7FC200C4EDEB /* Spotify.framework in Frameworks */,
+				BF00E8431C877A340054FD92 /* Spotify.framework in Frameworks */,
 				9ED963F6FA3ABE7658200DC6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +88,7 @@
 		BF0D70F51C7EEAE800C4EDEB /* Vimo */ = {
 			isa = PBXGroup;
 			children = (
+				BF0D710D1C7F7F2600C4EDEB /* VOKeys.h */,
 				BF0D70FF1C7EEAE800C4EDEB /* Main.storyboard */,
 				BF0D70F91C7EEAE800C4EDEB /* AppDelegate.h */,
 				BF0D70FA1C7EEAE800C4EDEB /* AppDelegate.m */,
@@ -105,7 +106,6 @@
 			children = (
 				BF0D71071C7EEAE800C4EDEB /* Info.plist */,
 				BFE4273E1C80462600AAAAA9 /* SignikaNegative-Regular.ttf */,
-				BF0D710D1C7F7F2600C4EDEB /* VOKeys.h */,
 				BF0D70F71C7EEAE800C4EDEB /* main.m */,
 			);
 			name = "Supporting Files";
@@ -116,6 +116,9 @@
 			children = (
 				BF0D71151C7F903100C4EDEB /* VOUser.h */,
 				BF0D71161C7F903100C4EDEB /* VOUser.m */,
+				BFD749611C814B0A004CF3FE /* VOCustomTableViewCell.h */,
+				BFD749621C814B0A004CF3FE /* VOCustomTableViewCell.m */,
+				BFD749581C813DDD004CF3FE /* VOCustomTableViewCell.xib */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -129,9 +132,6 @@
 				BFD7495E1C813EC8004CF3FE /* VOPlaylistTableViewController.m */,
 				BFD749671C817452004CF3FE /* VOMusicPlayerViewController.h */,
 				BFD749681C817452004CF3FE /* VOMusicPlayerViewController.m */,
-				BFD749611C814B0A004CF3FE /* VOCustomTableViewCell.h */,
-				BFD749621C814B0A004CF3FE /* VOCustomTableViewCell.m */,
-				BFD749581C813DDD004CF3FE /* VOCustomTableViewCell.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -139,8 +139,8 @@
 		CE2C7385D88879063F3201A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF00E8421C877A340054FD92 /* Spotify.framework */,
 				BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */,
-				BF0D710E1C7F7FC200C4EDEB /* Spotify.framework */,
 				5BC7A167C80DD410C32B6731 /* libPods.a */,
 			);
 			name = Frameworks;
