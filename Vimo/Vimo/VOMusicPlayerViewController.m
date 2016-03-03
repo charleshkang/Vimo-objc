@@ -8,6 +8,7 @@
 
 #import "VOMusicPlayerViewController.h"
 #import "VOPlaylistTableViewController.h"
+#import "VOUser.h"
 #import "VOKeys.h"
 
 @interface VOMusicPlayerViewController ()
@@ -92,6 +93,7 @@ SPTAudioStreamingDelegate
     
     if (self.audioPlayer == nil) {
         self.audioPlayer = [[SPTAudioStreamingController alloc] initWithClientId:auth.clientID];
+        self.audioPlayer.diskCache = [[SPTDiskCache alloc] initWithCapacity:1024 * 1024 * 64];
         self.audioPlayer.playbackDelegate = self;
         SPTVolume volume = 0.5;
         [self.audioPlayer setVolume:volume callback:^(NSError *error) {
@@ -103,6 +105,7 @@ SPTAudioStreamingDelegate
             NSLog(@"Enabling playback error: %@", error);
             return;
         }
+
         [self.audioPlayer playURIs:self.trackURIs fromIndex:self.currentSongIndex callback:^(NSError *error) {
             if (error != nil) {
                 NSLog(@"Error:%@", error);
@@ -115,7 +118,7 @@ SPTAudioStreamingDelegate
             self.artistLabel.text = artist.name;
         }
          ];}
-     ];
+    ];
 }
 
 #pragma mark - Player Implementation
@@ -169,6 +172,7 @@ SPTAudioStreamingDelegate
 
 - (IBAction)playButtonTapped:(id)sender
 {
+    VOUser *controller = [VOUser user];
     if(self.audioPlayer.isPlaying){
         [self.audioPlayer setIsPlaying:NO callback:^(NSError *error) {
         }];
@@ -178,7 +182,9 @@ SPTAudioStreamingDelegate
         [self.audioPlayer setIsPlaying:YES callback:^(NSError *error) {
         }];
         [_playButton setImage:self.playImage forState:UIControlStateNormal];
-    }}
+    }
+    [controller.player setIsPlaying:!controller.player.isPlaying callback:nil];
+}
 
 - (IBAction)nextButtonTapped:(id)sender
 {

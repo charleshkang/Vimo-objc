@@ -19,5 +19,7 @@
 @property (nonatomic) SPTSession *spotifySession;
 
 @property (nonatomic) VOPlaylistTableViewController *playlistsVC;
+@property(strong, nonatomic) SPTAudioStreamingController *player;
+
 
 @end
