@@ -9,6 +9,7 @@
 #import "VOPlaylistTableViewController.h"
 #import "VOCustomTableViewCell.h"
 #import "VOMusicPlayerViewController.h"
+#import "VOLoginVC.h"
 #import "VOUser.h"
 
 #import <Spotify/Spotify.h>
@@ -60,7 +61,7 @@
     [self reloadWithPlaylists];
 }
 
-#pragma mark - Table view data source
+#pragma mark - Table View Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -91,7 +92,6 @@
     if (self.currentSongIndex != indexPath.row) {
         self.currentSongIndex = indexPath.row;
         vc.session = self.user.spotifySession;
-//        [vc setPlaylistWithPartialPlaylist:(SPTPartialPlaylist *)[self.playlists objectAtIndex:indexPath.row]];
         NSLog(@"Selected Playlist: %@", [self.playlists objectAtIndex:indexPath.row]);
     }
     [self.navigationController pushViewController:vc animated:YES];
@@ -120,6 +120,31 @@
     [SPTRequest playlistsForUserInSession:self.user.spotifySession callback:^(NSError *error, id object) {
         [self fetchPlaylistPageForSession:self.user.spotifySession error:error object:object];
     }];
+}
+
+#pragma mark - Logout Logic
+
+- (IBAction)logoutButton:(id)sender
+{
+    
+    SPTAuth *auth = [SPTAuth defaultInstance];
+    [self.playlists removeAllObjects];
+    self.currentSongIndex = -1;
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    [self.tableView reloadData];
+    if (self.musicPlayerVC.audioPlayer) {
+        [self.musicPlayerVC.audioPlayer logout:^(NSError *error) {
+            auth.session = nil;
+            self.musicPlayerVC = nil;
+        }];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.musicPlayerVC = nil;
+            [self.navigationController pushViewController:[VOLoginVC new] animated:NO];
+        });
+        
+    }
+    
 }
 
 @end

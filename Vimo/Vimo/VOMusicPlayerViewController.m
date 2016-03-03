@@ -7,6 +7,7 @@
 //
 
 #import "VOMusicPlayerViewController.h"
+#import "VOPlaylistTableViewController.h"
 #import "VOKeys.h"
 
 @interface VOMusicPlayerViewController ()
@@ -38,6 +39,8 @@ SPTAudioStreamingDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
     self.trackURIs = [NSMutableArray new];
     self.currentSongIndex = 0;
     
@@ -73,29 +76,6 @@ SPTAudioStreamingDelegate
     }
 }
 
-// sample
-//    if(partialPlaylist){
-//        [SPTRequest requestItemAtURI:partialPlaylist.uri withSession:self.session callback:^(NSError *error, id object) {
-//            if([object isKindOfClass:[SPTPlaylistSnapshot class]]){
-//                self.currentPlaylist = (SPTPlaylistSnapshot *)object;
-//                [self.trackURIs removeAllObjects];
-//                NSLog(@"PLAYLIST SIZE: %lu", (unsigned long)self.currentPlaylist.trackCount);
-//                unsigned int i = 0;
-//                if(self.currentPlaylist.trackCount > 0){
-//                    for(SPTTrack *track in self.currentPlaylist.tracksForPlayback){
-//                        NSLog(@"GOT SONG:%u %@ ", i, track.name);
-//                        i++;
-//                        [self.trackURIs addObject:track.uri];
-//                    }
-//                    [self handleNewSession];
-//                    NSLog(@"uris: %@", self.trackURIs);
-//                }
-//            }
-//        }];
-//    }
-//}
-
-
 // This is fine
 - (void)handleNewSession
 {
@@ -117,16 +97,16 @@ SPTAudioStreamingDelegate
         }
         [self.audioPlayer playURIs:self.trackURIs fromIndex:self.currentSongIndex callback:^(NSError *error) {
             if (error != nil) {
-                NSLog(@"ERRORERROR:%@", error);
+                NSLog(@"Error:%@", error);
                 return;
             }
-        
-        self.currentTrack = [self.currentPlaylist.tracksForPlayback objectAtIndex:self.currentSongIndex];
-        self.titleLabel.text = self.currentTrack.name;
-        SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:self.currentSongIndex];
-        self.artistLabel.text = artist.name;
-        
-    }
+            
+            self.currentTrack = [self.currentPlaylist.tracksForPlayback objectAtIndex:self.currentSongIndex];
+            self.titleLabel.text = self.currentTrack.name;
+            SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:self.currentSongIndex];
+            self.artistLabel.text = artist.name;
+            
+        }
          ];}
      ];
 }
@@ -145,16 +125,13 @@ SPTAudioStreamingDelegate
 // This is fine
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri
 {
-    NSLog(@"Started Track!!!");
-    
     self.currentSongIndex = self.audioPlayer.currentTrackIndex;
     [SPTTrack trackWithURI:trackUri session:self.session callback:^(NSError *error, SPTTrack *track) {
         self.currentTrack = track;
         self.titleLabel.text = self.currentTrack.name;
         NSURL *coverArtURL = self.currentTrack.album.largestCover.imageURL;
-        NSLog(@"URLs: %@", self.currentTrack.album.largestCover.imageURL);
         
-        if(coverArtURL){
+        if (coverArtURL) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSError *error = nil;
                 UIImage *image = nil;
@@ -177,6 +154,11 @@ SPTAudioStreamingDelegate
      ];
 }
 
+- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata
+{
+    NSLog(@"track changed = %@", [trackMetadata valueForKey:SPTAudioStreamingMetadataTrackURI]);
+}
+
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangePlaybackStatus:(BOOL)isPlaying
 {
     NSLog(@"is playing = %d", isPlaying);
@@ -187,14 +169,8 @@ SPTAudioStreamingDelegate
     NSLog(@"failed to play track: %@", trackUri);
 }
 
-- (void) audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata
-{
-    NSLog(@"track changed = %@", [trackMetadata valueForKey:SPTAudioStreamingMetadataTrackURI]);
-}
-
 - (IBAction)playButtonTapped:(id)sender
 {
-    NSLog(@"Current playback: %f", self.audioPlayer.currentPlaybackPosition);
     if(self.audioPlayer.isPlaying){
         [self.audioPlayer setIsPlaying:NO callback:^(NSError *error) {
         }];
@@ -205,12 +181,6 @@ SPTAudioStreamingDelegate
         }];
         [_playButton setImage:self.pauseImage forState:UIControlStateNormal];
     }}
-
-- (IBAction)pauseButtonTapped:(id)sender
-{
-    [self.audioPlayer setIsPlaying:!self.audioPlayer.isPlaying callback:nil];
-    NSLog(@"Paused");
-}
 
 - (IBAction)nextButtonTapped:(id)sender
 {
@@ -230,28 +200,12 @@ SPTAudioStreamingDelegate
             
         }];
     }
-    NSLog(@"Skipped Song");
 }
 
 - (IBAction)previousButtonTapped:(id)sender
 {
-    if(self.currentSongIndex == 0 && !self.audioPlayer.shuffle){
-        self.currentSongIndex = self.trackURIs.count-1;
-        SPTPlayOptions *playOptions = [SPTPlayOptions new];
-        playOptions.startTime = 0;
-        playOptions.trackIndex = self.currentSongIndex;
-        
-        [self.audioPlayer playURIs:self.trackURIs withOptions:playOptions callback:^(NSError *error) {
-            if(error != nil){
-                NSLog(@"ERROR: %@", error);
-            }
-        }];
-        
-    } else {
-        [self.audioPlayer skipPrevious:^(NSError *error) {
-        }];
-    }
-    NSLog(@"Went Back");
+    [self.audioPlayer skipPrevious:^(NSError *error) {
+    }];
 }
 
 
