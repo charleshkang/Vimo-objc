@@ -23,7 +23,6 @@ SPTAudioStreamingDelegate
 
 @property (nonatomic) UIImage *playImage;
 @property (nonatomic) UIImage *pauseImage;
-@property (weak, nonatomic) IBOutlet UIButton *pauseButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverView;
@@ -40,7 +39,7 @@ SPTAudioStreamingDelegate
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-
+    
     self.trackURIs = [NSMutableArray new];
     self.currentSongIndex = 0;
     
@@ -64,19 +63,16 @@ SPTAudioStreamingDelegate
                 unsigned int i = 0;
                 if (self.currentPlaylist.trackCount > 0) {
                     for (SPTTrack *track in self.currentPlaylist.tracksForPlayback) {
-                        NSLog(@"Got Songs:%u %@", i, track.name);
                         i++;
                         [self.trackURIs addObject:track.uri];
                     }
                     [self handleNewSession];
-                    NSLog(@"uris: %@", self.trackURIs); // WHY IS THIS NULL.
                 }
             }
         }];
     }
 }
 
-// This is fine
 - (void)handleNewSession
 {
     SPTAuth *auth = [SPTAuth defaultInstance];
@@ -105,7 +101,6 @@ SPTAudioStreamingDelegate
             self.titleLabel.text = self.currentTrack.name;
             SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:self.currentSongIndex];
             self.artistLabel.text = artist.name;
-            
         }
          ];}
      ];
@@ -122,13 +117,14 @@ SPTAudioStreamingDelegate
     [alertView show];
 }
 
-// This is fine
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri
 {
     self.currentSongIndex = self.audioPlayer.currentTrackIndex;
     [SPTTrack trackWithURI:trackUri session:self.session callback:^(NSError *error, SPTTrack *track) {
         self.currentTrack = track;
         self.titleLabel.text = self.currentTrack.name;
+        SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:0];
+        self.artistLabel.text = artist.name;
         NSURL *coverArtURL = self.currentTrack.album.largestCover.imageURL;
         
         if (coverArtURL) {
@@ -156,7 +152,7 @@ SPTAudioStreamingDelegate
 
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata
 {
-    NSLog(@"track changed = %@", [trackMetadata valueForKey:SPTAudioStreamingMetadataTrackURI]);
+    //    NSLog(@"track changed = %@", [trackMetadata valueForKey:SPTAudioStreamingMetadataTrackURI]);
 }
 
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangePlaybackStatus:(BOOL)isPlaying
@@ -174,32 +170,30 @@ SPTAudioStreamingDelegate
     if(self.audioPlayer.isPlaying){
         [self.audioPlayer setIsPlaying:NO callback:^(NSError *error) {
         }];
-        [_playButton setImage:self.playImage forState:UIControlStateNormal];
+        [_playButton setImage:self.pauseImage forState:UIControlStateNormal];
         
     }else{
         [self.audioPlayer setIsPlaying:YES callback:^(NSError *error) {
         }];
-        [_playButton setImage:self.pauseImage forState:UIControlStateNormal];
+        [_playButton setImage:self.playImage forState:UIControlStateNormal];
     }}
 
 - (IBAction)nextButtonTapped:(id)sender
 {
-    if(self.currentSongIndex == (self.trackURIs.count - 1) && !self.audioPlayer.shuffle){
+    if(self.currentSongIndex == (self.trackURIs.count - 1) && !self.audioPlayer.shuffle) {
         self.currentSongIndex = 0;
         SPTPlayOptions *playOptions = [SPTPlayOptions new];
         playOptions.startTime = 0;
         playOptions.trackIndex = self.currentSongIndex;
         [self.audioPlayer playURIs:self.trackURIs withOptions:playOptions callback:^(NSError *error) {
-            if(error != nil){
+            if (error != nil) {
                 NSLog(@"ERROR: %@", error);
-                abort();
             }
         }];
-    } else {
-        [self.audioPlayer skipNext:^(NSError *error) {
-            
-        }];
     }
+    [self.audioPlayer skipNext:^(NSError *error) {
+        
+    }];
 }
 
 - (IBAction)previousButtonTapped:(id)sender

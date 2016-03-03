@@ -41,10 +41,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationController.title = @"Your Playlists";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 15.0;
+    
+    [self.navigationItem setHidesBackButton:YES animated:YES];
     
     // grab the nib from the main bundle
     UINib *nib = [UINib nibWithNibName:@"VOCustomTableViewCell" bundle:nil];
