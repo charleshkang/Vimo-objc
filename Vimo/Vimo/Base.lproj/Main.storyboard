@@ -33,7 +33,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="279" sectionHeaderHeight="28" sectionFooterHeight="28" id="e1J-2E-2ha">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" red="0.76526886544980188" green="0.91522450223350582" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,9 +45,12 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E22-3R-0Ax" id="XSz-ZB-pWR">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Tt9-nV-1wv" kind="showDetail" id="7o8-bM-WNX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -70,7 +73,7 @@
             </objects>
             <point key="canvasLocation" x="64" y="-1638"/>
         </scene>
-        <!--Music Player View Controller-->
+        <!--Music Player-->
         <scene sceneID="xfA-9L-iuQ">
             <objects>
                 <viewController storyboardIdentifier="musicPlayerVC" id="Tt9-nV-1wv" customClass="VOMusicPlayerViewController" sceneMemberID="viewController">
@@ -99,25 +102,25 @@
                                             <action selector="nextButtonTapped:" destination="Tt9-nV-1wv" eventType="touchUpInside" id="TDG-Fy-xgn"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yC-I4-XwO" userLabel="Play">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yC-I4-XwO" userLabel="Play/Pause">
                                         <rect key="frame" x="114" y="29" width="56" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="56" id="22n-9X-Pll"/>
                                             <constraint firstAttribute="height" constant="56" id="Bbu-l6-6tq"/>
                                             <constraint firstAttribute="width" constant="56" id="Zyc-nq-D7Z"/>
                                         </constraints>
-                                        <state key="normal" image="play"/>
+                                        <state key="normal" image="pause"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="Zyc-nq-D7Z"/>
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="playButtonTapped:" destination="Tt9-nV-1wv" eventType="touchUpInside" id="qHP-q6-2Ys"/>
+                                            <action selector="playPauseButtonTapped:" destination="Tt9-nV-1wv" eventType="touchUpInside" id="jZw-Xa-dpM"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="kIU-GK-Vay" firstAttribute="top" secondItem="2jQ-tS-3yK" secondAttribute="top" constant="45" id="0Cz-Es-bM0"/>
                                     <constraint firstItem="hFN-7H-cFF" firstAttribute="leading" secondItem="7yC-I4-XwO" secondAttribute="trailing" constant="65" id="0kY-yD-xtr"/>
@@ -146,11 +149,11 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E2-um-gyf" userLabel="Music Elements View">
-                                <rect key="frame" x="0.0" y="64" width="600" height="391"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="347"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-zG-26f">
                                         <rect key="frame" x="200" y="40" width="200" height="200"/>
-                                        <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="oC6-bM-ESM"/>
                                             <constraint firstAttribute="width" constant="200" id="xy8-6n-qUI"/>
@@ -169,7 +172,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="gUW-zG-26f" firstAttribute="top" secondItem="3E2-um-gyf" secondAttribute="top" constant="40" id="33g-J0-Eh4"/>
                                     <constraint firstItem="gUW-zG-26f" firstAttribute="leading" secondItem="3E2-um-gyf" secondAttribute="leading" constant="200" id="9A3-io-fck"/>
@@ -192,7 +195,7 @@
                                 </variation>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.13333333333333333" green="0.12941176470588234" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="3E2-um-gyf" firstAttribute="top" secondItem="obV-p6-SEj" secondAttribute="bottom" constant="44" id="7qF-UE-Owr"/>
                             <constraint firstAttribute="trailing" secondItem="3E2-um-gyf" secondAttribute="trailing" id="L7d-8P-0UY"/>
@@ -203,12 +206,19 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Music Player" id="hoF-7a-AIw">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="PrT-v4-S33">
+                            <connections>
+                                <action selector="backButtonTapped:" destination="Tt9-nV-1wv" id="CAz-f4-7ah"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="artistLabel" destination="HEO-ry-btq" id="M7o-PY-Eal"/>
                         <outlet property="coverView" destination="gUW-zG-26f" id="827-Kj-SNe"/>
-                        <outlet property="playButton" destination="7yC-I4-XwO" id="WMK-Lp-8Do"/>
+                        <outlet property="playPauseButton" destination="7yC-I4-XwO" id="2rC-ol-Cbk"/>
                         <outlet property="titleLabel" destination="9nH-YS-JWj" id="qLL-9t-pzS"/>
                     </connections>
                 </viewController>
@@ -282,7 +292,7 @@
     <resources>
         <image name="login" width="307" height="55"/>
         <image name="next" width="50" height="23"/>
-        <image name="play" width="56" height="56"/>
+        <image name="pause" width="112" height="112"/>
         <image name="previous" width="49" height="23"/>
     </resources>
 </document>

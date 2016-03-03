@@ -18,13 +18,13 @@ SPTAudioStreamingDelegate
 
 @property (nonatomic) SPTPlaylistSnapshot *currentPlaylist;
 @property (nonatomic) NSMutableArray *trackURIs;
-@property (nonatomic) SPTTrack *currentTrack;
 @property (nonatomic) SPTArtist *currentArtist;
 @property (nonatomic) NSInteger currentSongIndex;
 
 @property (nonatomic) UIImage *playImage;
 @property (nonatomic) UIImage *pauseImage;
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 
 @property (weak, nonatomic) IBOutlet UIImageView *coverView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -39,27 +39,14 @@ SPTAudioStreamingDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     self.trackURIs = [NSMutableArray new];
     self.currentSongIndex = 0;
     
-    self.playImage = [UIImage imageNamed:@"play"];
     self.pauseImage = [UIImage imageNamed:@"pause"];
+    self.playImage = [UIImage imageNamed:@"play"];
     
     [self setPlaylistWithPartialPlaylist:self.partialPlaylist];
-}
-
--(void) viewWillDisappear:(BOOL) animated
-{
-    [super viewWillDisappear:animated];
-    if ([self isMovingFromParentViewController])
-    {
-        if (self.navigationController.delegate == self)
-        {
-            self.navigationController.delegate = nil;
-        }
-    }
 }
 
 #pragma mark - Spotify Player Methods
@@ -93,7 +80,6 @@ SPTAudioStreamingDelegate
     
     if (self.audioPlayer == nil) {
         self.audioPlayer = [[SPTAudioStreamingController alloc] initWithClientId:auth.clientID];
-        self.audioPlayer.diskCache = [[SPTDiskCache alloc] initWithCapacity:1024 * 1024 * 64];
         self.audioPlayer.playbackDelegate = self;
         SPTVolume volume = 0.5;
         [self.audioPlayer setVolume:volume callback:^(NSError *error) {
@@ -170,18 +156,18 @@ SPTAudioStreamingDelegate
     NSLog(@"is playing = %d", isPlaying);
 }
 
-- (IBAction)playButtonTapped:(id)sender
+- (IBAction)playPauseButtonTapped:(id)sender
 {
     VOUser *controller = [VOUser user];
     if(self.audioPlayer.isPlaying){
         [self.audioPlayer setIsPlaying:NO callback:^(NSError *error) {
         }];
-        [_playButton setImage:self.pauseImage forState:UIControlStateNormal];
+        [_playPauseButton setImage:self.playImage forState:UIControlStateNormal];
         
     }else{
         [self.audioPlayer setIsPlaying:YES callback:^(NSError *error) {
         }];
-        [_playButton setImage:self.playImage forState:UIControlStateNormal];
+        [_playPauseButton setImage:self.pauseImage forState:UIControlStateNormal];
     }
     [controller.player setIsPlaying:!controller.player.isPlaying callback:nil];
 }
@@ -208,6 +194,15 @@ SPTAudioStreamingDelegate
 {
     [self.audioPlayer skipPrevious:^(NSError *error) {
     }];
+}
+
+- (IBAction)backButtonTapped:(id)sender
+{
+    if (self.audioPlayer.isPlaying == YES) {
+        [self.audioPlayer setIsPlaying:!self.audioPlayer.isPlaying callback:nil];
+    }
+    self.audioPlayer = nil;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

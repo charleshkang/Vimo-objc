@@ -17,6 +17,7 @@
 		BF0D71111C7F7FCE00C4EDEB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */; };
 		BF0D71141C7F8E4900C4EDEB /* VOLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */; };
 		BF0D71171C7F903100C4EDEB /* VOUser.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0D71161C7F903100C4EDEB /* VOUser.m */; };
+		BF6347561C88A530006226AB /* VOSpotifyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6347551C88A530006226AB /* VOSpotifyHelper.m */; };
 		BFD7495F1C813EC8004CF3FE /* VOPlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD7495E1C813EC8004CF3FE /* VOPlaylistTableViewController.m */; };
 		BFD749631C814B0A004CF3FE /* VOCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD749621C814B0A004CF3FE /* VOCustomTableViewCell.m */; };
 		BFD749661C81525F004CF3FE /* VOCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFD749581C813DDD004CF3FE /* VOCustomTableViewCell.xib */; };
@@ -41,6 +42,8 @@
 		BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLoginVC.m; sourceTree = "<group>"; };
 		BF0D71151C7F903100C4EDEB /* VOUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOUser.h; sourceTree = "<group>"; };
 		BF0D71161C7F903100C4EDEB /* VOUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOUser.m; sourceTree = "<group>"; };
+		BF6347541C88A530006226AB /* VOSpotifyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOSpotifyHelper.h; sourceTree = "<group>"; };
+		BF6347551C88A530006226AB /* VOSpotifyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOSpotifyHelper.m; sourceTree = "<group>"; };
 		BFD749581C813DDD004CF3FE /* VOCustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VOCustomTableViewCell.xib; sourceTree = "<group>"; };
 		BFD7495D1C813EC8004CF3FE /* VOPlaylistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOPlaylistTableViewController.h; sourceTree = "<group>"; };
 		BFD7495E1C813EC8004CF3FE /* VOPlaylistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOPlaylistTableViewController.m; sourceTree = "<group>"; };
@@ -119,6 +122,8 @@
 				BFD749611C814B0A004CF3FE /* VOCustomTableViewCell.h */,
 				BFD749621C814B0A004CF3FE /* VOCustomTableViewCell.m */,
 				BFD749581C813DDD004CF3FE /* VOCustomTableViewCell.xib */,
+				BF6347541C88A530006226AB /* VOSpotifyHelper.h */,
+				BF6347551C88A530006226AB /* VOSpotifyHelper.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				BFD749631C814B0A004CF3FE /* VOCustomTableViewCell.m in Sources */,
 				BFD7495F1C813EC8004CF3FE /* VOPlaylistTableViewController.m in Sources */,
 				BF0D71171C7F903100C4EDEB /* VOUser.m in Sources */,
+				BF6347561C88A530006226AB /* VOSpotifyHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
