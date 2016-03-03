@@ -49,6 +49,18 @@ SPTAudioStreamingDelegate
     [self setPlaylistWithPartialPlaylist:self.partialPlaylist];
 }
 
+-(void) viewWillDisappear:(BOOL) animated
+{
+    [super viewWillDisappear:animated];
+    if ([self isMovingFromParentViewController])
+    {
+        if (self.navigationController.delegate == self)
+        {
+            self.navigationController.delegate = nil;
+        }
+    }
+}
+
 #pragma mark - Spotify Player Methods
 
 // This is fine
@@ -109,7 +121,7 @@ SPTAudioStreamingDelegate
 #pragma mark - Player Implementation
 
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didReceiveMessage:(NSString *)message {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message from Spotify"
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Spotify Message:"
                                                         message:message
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
@@ -150,19 +162,9 @@ SPTAudioStreamingDelegate
      ];
 }
 
-- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata
-{
-    //    NSLog(@"track changed = %@", [trackMetadata valueForKey:SPTAudioStreamingMetadataTrackURI]);
-}
-
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangePlaybackStatus:(BOOL)isPlaying
 {
     NSLog(@"is playing = %d", isPlaying);
-}
-
-- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didFailToPlayTrack:(NSURL *)trackUri
-{
-    NSLog(@"failed to play track: %@", trackUri);
 }
 
 - (IBAction)playButtonTapped:(id)sender

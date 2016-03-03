@@ -15,7 +15,7 @@
 @property (nonatomic) NSMutableArray *playlists;
 @property (nonatomic) SPTSession *session;
 
-@property (nonatomic) SPTAudioStreamingController *audioPlayer;
+
 
 -(void)reloadWithPlaylists;
 
