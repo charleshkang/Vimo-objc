@@ -78,6 +78,7 @@
     VOCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier"];
     
     NSString *playlistName;
+    
     SPTPartialPlaylist *partialPlaylist = [self.playlists objectAtIndex:indexPath.row];
     playlistName = partialPlaylist.name;
     [cell.playlistLabel setText:playlistName];
@@ -142,9 +143,7 @@
             self.musicPlayerVC = nil;
             [self.navigationController pushViewController:[VOLoginVC new] animated:NO];
         });
-        
     }
-    
 }
 
 @end

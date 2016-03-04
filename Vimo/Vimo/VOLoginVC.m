@@ -7,7 +7,7 @@
 //
 
 #import "VOLoginVC.h"
-#import "VOKeys.h"
+#import "Config.h"
 #import "VOUser.h"
 
 

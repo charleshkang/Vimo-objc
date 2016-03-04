@@ -9,7 +9,7 @@
 #import "VOMusicPlayerViewController.h"
 #import "VOPlaylistTableViewController.h"
 #import "VOUser.h"
-#import "VOKeys.h"
+#import "Config.h"
 
 @interface VOMusicPlayerViewController ()
 <
@@ -24,11 +24,11 @@ SPTAudioStreamingDelegate
 @property (nonatomic) UIImage *playImage;
 @property (nonatomic) UIImage *pauseImage;
 
-@property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
+@property (weak,nonatomic) IBOutlet UIButton *playPauseButton;
 
-@property (weak, nonatomic) IBOutlet UIImageView *coverView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (weak,nonatomic) IBOutlet UIImageView *coverView;
+@property (weak,nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak,nonatomic) IBOutlet UILabel *artistLabel;
 
 @end
 
@@ -39,19 +39,18 @@ SPTAudioStreamingDelegate
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.trackURIs = [NSMutableArray new];
     self.currentSongIndex = 0;
     
     self.pauseImage = [UIImage imageNamed:@"pause"];
     self.playImage = [UIImage imageNamed:@"play"];
-    
+    [self navBarLogic];
+    [self setupGestureRecognizer];
     [self setPlaylistWithPartialPlaylist:self.partialPlaylist];
 }
 
 #pragma mark - Spotify Player Methods
 
-// This is fine
 - (void)setPlaylistWithPartialPlaylist:(SPTPartialPlaylist *)partialPlaylist
 {
     if (partialPlaylist) {
@@ -91,7 +90,7 @@ SPTAudioStreamingDelegate
             NSLog(@"Enabling playback error: %@", error);
             return;
         }
-
+        
         [self.audioPlayer playURIs:self.trackURIs fromIndex:self.currentSongIndex callback:^(NSError *error) {
             if (error != nil) {
                 NSLog(@"Error:%@", error);
@@ -104,7 +103,7 @@ SPTAudioStreamingDelegate
             self.artistLabel.text = artist.name;
         }
          ];}
-    ];
+     ];
 }
 
 #pragma mark - Player Implementation
@@ -172,30 +171,6 @@ SPTAudioStreamingDelegate
     [controller.player setIsPlaying:!controller.player.isPlaying callback:nil];
 }
 
-- (IBAction)nextButtonTapped:(id)sender
-{
-    if(self.currentSongIndex == (self.trackURIs.count - 1) && !self.audioPlayer.shuffle) {
-        self.currentSongIndex = 0;
-        SPTPlayOptions *playOptions = [SPTPlayOptions new];
-        playOptions.startTime = 0;
-        playOptions.trackIndex = self.currentSongIndex;
-        [self.audioPlayer playURIs:self.trackURIs withOptions:playOptions callback:^(NSError *error) {
-            if (error != nil) {
-                NSLog(@"ERROR: %@", error);
-            }
-        }];
-    }
-    [self.audioPlayer skipNext:^(NSError *error) {
-        
-    }];
-}
-
-- (IBAction)previousButtonTapped:(id)sender
-{
-    [self.audioPlayer skipPrevious:^(NSError *error) {
-    }];
-}
-
 - (IBAction)backButtonTapped:(id)sender
 {
     if (self.audioPlayer.isPlaying == YES) {
@@ -205,5 +180,71 @@ SPTAudioStreamingDelegate
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Swipe Gestures
+
+- (void)setupGestureRecognizer
+{
+    
+    UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc]
+                                           initWithTarget: self
+                                           action: @selector(handleSwipe:)];
+    leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    
+    UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc]
+                                            initWithTarget: self
+                                            action: @selector(handleSwipe:)];
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    
+    
+    [self.view addGestureRecognizer:leftSwipe];
+    [self.view addGestureRecognizer:rightSwipe];
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)gesture
+{
+    switch (gesture.direction) {
+
+        case UISwipeGestureRecognizerDirectionLeft:
+            
+            if(self.currentSongIndex == (self.trackURIs.count - 1) && !self.audioPlayer.shuffle) {
+                self.currentSongIndex = 0;
+                SPTPlayOptions *playOptions = [SPTPlayOptions new];
+                playOptions.startTime = 0;
+                playOptions.trackIndex = self.currentSongIndex;
+                [self.audioPlayer playURIs:self.trackURIs withOptions:playOptions callback:^(NSError *error) {
+                    if (error != nil) {
+                        NSLog(@"ERROR: %@", error);
+                    }
+                }];
+            }
+            [self.audioPlayer skipNext:^(NSError *error) {
+                
+            }];
+            break;
+            
+        case UISwipeGestureRecognizerDirectionRight:
+            [self.audioPlayer skipPrevious:^(NSError *error) {
+            }];
+            
+            break;
+            
+        default:
+            
+            break;
+    }
+}
+
+#pragma mark - Navigation Bar Logic
+
+- (void)navBarLogic
+{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    [self.navigationController.navigationBar
+     setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+}
 
 @end

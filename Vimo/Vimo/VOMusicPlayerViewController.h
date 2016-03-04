@@ -20,6 +20,7 @@ SPTAudioStreamingPlaybackDelegate
 @property (nonatomic) SPTTrack *currentTrack;
 
 @property (nonatomic) SPTAudioStreamingController *audioPlayer;
+
 - (void)setPlaylistWithPartialPlaylist:(SPTPartialPlaylist *)partialPlaylist;
 
 @end

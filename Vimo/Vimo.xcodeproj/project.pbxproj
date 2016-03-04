@@ -35,7 +35,7 @@
 		BF0D71021C7EEAE800C4EDEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF0D71051C7EEAE800C4EDEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF0D71071C7EEAE800C4EDEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF0D710D1C7F7F2600C4EDEB /* VOKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VOKeys.h; sourceTree = "<group>"; };
+		BF0D710D1C7F7F2600C4EDEB /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		BF0D71101C7F7FCE00C4EDEB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		BF0D71121C7F8E4900C4EDEB /* VOLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOLoginVC.h; sourceTree = "<group>"; };
 		BF0D71131C7F8E4900C4EDEB /* VOLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOLoginVC.m; sourceTree = "<group>"; };
@@ -88,7 +88,6 @@
 		BF0D70F51C7EEAE800C4EDEB /* Vimo */ = {
 			isa = PBXGroup;
 			children = (
-				BF0D710D1C7F7F2600C4EDEB /* VOKeys.h */,
 				BF0D70FF1C7EEAE800C4EDEB /* Main.storyboard */,
 				BF0D70F91C7EEAE800C4EDEB /* AppDelegate.h */,
 				BF0D70FA1C7EEAE800C4EDEB /* AppDelegate.m */,
@@ -104,6 +103,7 @@
 		BF0D70F61C7EEAE800C4EDEB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BF0D710D1C7F7F2600C4EDEB /* Config.h */,
 				BF0D71071C7EEAE800C4EDEB /* Info.plist */,
 				BFE4273E1C80462600AAAAA9 /* SignikaNegative-Regular.ttf */,
 				BF0D70F71C7EEAE800C4EDEB /* main.m */,

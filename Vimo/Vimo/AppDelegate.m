@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "VOKeys.h"
+#import "Config.h"
 #import "VOLoginVC.h"
 #import "VOUser.h"
 #import "VOPlaylistTableViewController.h"
