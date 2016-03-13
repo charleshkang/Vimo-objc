@@ -42,7 +42,7 @@
 {
     [super viewDidLoad];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 15.0;
+    self.tableView.estimatedRowHeight = 20.0;
     
     [self.navigationItem setHidesBackButton:YES animated:YES];
     
@@ -78,9 +78,13 @@
     VOCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier"];
     
     NSString *playlistName;
+    SPTImage *playlistCoverImage;
+
+    SPTPartialPlaylist *playlistTitles = [self.playlists objectAtIndex:indexPath.row];
+    SPTPartialPlaylist *playlistCovers = [self.playlists objectAtIndex:indexPath.row];
+
+    playlistName = playlistTitles.name;
     
-    SPTPartialPlaylist *partialPlaylist = [self.playlists objectAtIndex:indexPath.row];
-    playlistName = partialPlaylist.name;
     [cell.playlistLabel setText:playlistName];
     
     return cell;

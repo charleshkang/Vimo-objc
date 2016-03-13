@@ -7,6 +7,7 @@
     <customFonts key="customFonts">
         <mutableArray key="SignikaNegative-Regular.ttf">
             <string>SignikaNegative-Regular</string>
+            <string>SignikaNegative-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -30,7 +31,7 @@
         <scene sceneID="NX3-Ip-cle">
             <objects>
                 <tableViewController storyboardIdentifier="playlistsVC" clearsSelectionOnViewWillAppear="NO" id="QDc-Im-fwV" customClass="VOPlaylistTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="279" sectionHeaderHeight="28" sectionFooterHeight="28" id="e1J-2E-2ha">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="51" sectionHeaderHeight="28" sectionFooterHeight="28" id="e1J-2E-2ha">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,11 +40,11 @@
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cellIdentifier" rowHeight="279" id="E22-3R-0Ax" customClass="VOCustomTableViewCell">
-                                <rect key="frame" x="0.0" y="92" width="600" height="279"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cellIdentifier" rowHeight="51" id="E22-3R-0Ax" customClass="VOCustomTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="600" height="51"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E22-3R-0Ax" id="XSz-ZB-pWR">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="278"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
@@ -71,7 +72,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kkh-6l-aEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64" y="-1638"/>
+            <point key="canvasLocation" x="62" y="-1630"/>
         </scene>
         <!--Vimo Player-->
         <scene sceneID="xfA-9L-iuQ">
@@ -242,8 +243,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1R-gL-xJv" userLabel="BG">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vimo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSi-GN-UGF">
-                                        <rect key="frame" x="49" y="89" width="503" height="99"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Vimo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSi-GN-UGF">
+                                        <rect key="frame" x="49" y="92" width="503" height="94"/>
                                         <fontDescription key="fontDescription" name="SignikaNegative-Regular" family="Signika Negative" pointSize="80"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -255,14 +256,26 @@
                                             <action selector="userLoggedInWithSpotify:" destination="JRe-hs-QmA" eventType="touchUpInside" id="ue5-PV-Gw6"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="the simple music player" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-3l-g13">
+                                        <rect key="frame" x="0.0" y="206" width="600" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="Lls-gV-qJM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SignikaNegative-Regular" family="Signika Negative" pointSize="30"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.29803921568627451" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="dyr-3l-g13" firstAttribute="leading" secondItem="r1R-gL-xJv" secondAttribute="leading" id="1Kh-lx-KxK"/>
                                     <constraint firstAttribute="bottom" secondItem="ili-rF-DZs" secondAttribute="bottom" constant="38" id="4MM-6N-MZp"/>
                                     <constraint firstItem="bSi-GN-UGF" firstAttribute="centerY" secondItem="r1R-gL-xJv" secondAttribute="centerY" constant="-161.5" id="4dJ-O5-m2Q"/>
                                     <constraint firstItem="bSi-GN-UGF" firstAttribute="leading" secondItem="r1R-gL-xJv" secondAttribute="leading" constant="49" id="JlV-5L-PVR"/>
+                                    <constraint firstAttribute="trailing" secondItem="dyr-3l-g13" secondAttribute="trailing" id="RW4-rf-oIg"/>
                                     <constraint firstItem="ili-rF-DZs" firstAttribute="centerX" secondItem="r1R-gL-xJv" secondAttribute="centerX" id="X8V-R2-ikF"/>
                                     <constraint firstAttribute="trailing" secondItem="bSi-GN-UGF" secondAttribute="trailing" constant="48" id="ih1-52-ctM"/>
+                                    <constraint firstItem="dyr-3l-g13" firstAttribute="top" secondItem="bSi-GN-UGF" secondAttribute="bottom" constant="20" id="lgG-RT-HdM"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -122,6 +122,7 @@ SPTAudioStreamingDelegate
     self.currentSongIndex = self.audioPlayer.currentTrackIndex;
     [SPTTrack trackWithURI:trackUri session:self.session callback:^(NSError *error, SPTTrack *track) {
         self.currentTrack = track;
+
         self.titleLabel.text = self.currentTrack.name;
         SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:0];
         self.artistLabel.text = artist.name;
