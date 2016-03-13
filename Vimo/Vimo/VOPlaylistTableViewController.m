@@ -41,10 +41,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 20.0;
-    
-    [self.navigationItem setHidesBackButton:YES animated:YES];
+    [self navBarLogic];
     
     // grab the nib from the main bundle
     UINib *nib = [UINib nibWithNibName:@"VOCustomTableViewCell" bundle:nil];
@@ -79,10 +79,10 @@
     
     NSString *playlistName;
     SPTImage *playlistCoverImage;
-
+    
     SPTPartialPlaylist *playlistTitles = [self.playlists objectAtIndex:indexPath.row];
     SPTPartialPlaylist *playlistCovers = [self.playlists objectAtIndex:indexPath.row];
-
+    
     playlistName = playlistTitles.name;
     
     [cell.playlistLabel setText:playlistName];
@@ -148,6 +148,14 @@
             [self.navigationController pushViewController:[VOLoginVC new] animated:NO];
         });
     }
+}
+
+#pragma mark - Nav Bar Logic
+
+- (void)navBarLogic
+{
+    self.navigationItem.hidesBackButton = YES;
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackOpaque];
 }
 
 @end

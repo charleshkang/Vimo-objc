@@ -32,6 +32,7 @@ SPTAuthViewDelegate
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

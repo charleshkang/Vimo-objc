@@ -20,7 +20,7 @@
                             <constraint firstAttribute="height" constant="48" id="Mui-No-gei"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                         <variation key="default">
                             <mask key="constraints">
@@ -29,6 +29,7 @@
                         </variation>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="CGq-7o-LBp" secondAttribute="bottom" constant="27" id="6T4-Sj-8gS"/>
                     <constraint firstAttribute="bottom" secondItem="CGq-7o-LBp" secondAttribute="bottom" constant="66" id="9W5-4a-8VS"/>
