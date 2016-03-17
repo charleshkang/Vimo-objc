@@ -169,7 +169,7 @@ SPTAudioStreamingDelegate
         }];
         [_playPauseButton setImage:self.pauseImage forState:UIControlStateNormal];
     }
-    [controller.player setIsPlaying:!controller.player.isPlaying callback:nil];
+    [controller.spotifyPlayer setIsPlaying:!controller.spotifyPlayer.isPlaying callback:nil];
 }
 
 - (IBAction)backButtonTapped:(id)sender

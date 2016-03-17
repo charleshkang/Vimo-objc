@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="450" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="CGq-7o-LBp">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song Title" lineBreakMode="wordWrap" numberOfLines="0" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="CGq-7o-LBp">
                         <rect key="frame" x="8" y="13" width="434" height="72"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="48" id="Mui-No-gei"/>

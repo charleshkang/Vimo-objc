@@ -15,8 +15,6 @@
 @property (nonatomic) NSMutableArray *playlists;
 @property (nonatomic) SPTSession *session;
 
-
-
--(void)reloadWithPlaylists;
+- (void)reloadWithPlaylists;
 
 @end

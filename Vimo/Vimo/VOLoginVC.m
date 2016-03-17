@@ -10,7 +10,6 @@
 #import "Config.h"
 #import "VOUser.h"
 
-
 #import <Spotify/Spotify.h>
 
 @interface VOLoginVC ()
@@ -32,7 +31,6 @@ SPTAuthViewDelegate
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,7 +56,6 @@ SPTAuthViewDelegate
 
 - (IBAction)userLoggedInWithSpotify:(id)sender
 {
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (self.user) {
         [defaults setBool:YES forKey:@"hasLaunchedOnce"];
@@ -67,7 +64,6 @@ SPTAuthViewDelegate
         [self presentViewController:playlistVC animated:YES completion:nil];
         [defaults synchronize];
     }
-    
     [self login];
     [self checkIfSessionIsValid];
 }
@@ -86,8 +82,7 @@ SPTAuthViewDelegate
     [self.navigationController pushViewController:playlistsVC animated:YES];
     
     [[VOUser user] handle:session];
-    NSLog(@"Session Granted %@", session);
-    
+    NSLog(@"Session Granted With Token: %@", session);
 }
 
 - (void)login
@@ -125,7 +120,5 @@ SPTAuthViewDelegate
 {
     NSLog(@"Authentication Failed : %@", error);
 }
-
-
 
 @end

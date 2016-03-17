@@ -21,7 +21,7 @@
 
 @property (nonatomic) NSInteger currentSongIndex;
 
-@property (nonatomic) VOPlaylistTableViewController *musicVC;
+@property (nonatomic) VOPlaylistTableViewController *VOMusicVC;
 @property (nonatomic) VOMusicPlayerViewController *musicPlayerVC;
 
 @property (nonatomic) SPTPlaylistSnapshot *currentPlaylist;
@@ -46,7 +46,6 @@
     self.tableView.estimatedRowHeight = 20.0;
     [self navBarLogic];
     
-    // grab the nib from the main bundle
     UINib *nib = [UINib nibWithNibName:@"VOCustomTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"cellIdentifier"];
     self.playlists = [[NSMutableArray alloc] init];
@@ -78,10 +77,8 @@
     VOCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellIdentifier"];
     
     NSString *playlistName;
-    SPTImage *playlistCoverImage;
     
     SPTPartialPlaylist *playlistTitles = [self.playlists objectAtIndex:indexPath.row];
-    SPTPartialPlaylist *playlistCovers = [self.playlists objectAtIndex:indexPath.row];
     
     playlistName = playlistTitles.name;
     
@@ -131,17 +128,18 @@
 
 - (IBAction)logoutButton:(id)sender
 {
-    
     SPTAuth *auth = [SPTAuth defaultInstance];
     [self.playlists removeAllObjects];
     self.currentSongIndex = -1;
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
     [self.tableView reloadData];
+    
     if (self.musicPlayerVC.audioPlayer) {
         [self.musicPlayerVC.audioPlayer logout:^(NSError *error) {
             auth.session = nil;
             self.musicPlayerVC = nil;
         }];
+        
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.musicPlayerVC = nil;
