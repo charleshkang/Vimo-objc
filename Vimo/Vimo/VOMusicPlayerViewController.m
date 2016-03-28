@@ -92,13 +92,11 @@ SPTAudioStreamingDelegate
             NSLog(@"Enabling playback error: %@", error);
             return;
         }
-        
         [self.audioPlayer playURIs:self.trackURIs fromIndex:self.currentSongIndex callback:^(NSError *error) {
             if (error != nil) {
                 NSLog(@"Error:%@", error);
                 return;
             }
-            
             self.currentTrack = [self.currentPlaylist.tracksForPlayback objectAtIndex:self.currentSongIndex];
             self.titleLabel.text = self.currentTrack.name;
             SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:self.currentSongIndex];
@@ -204,7 +202,6 @@ SPTAudioStreamingDelegate
 
 - (void)setupGestureRecognizer
 {
-    
     UISwipeGestureRecognizer *leftSwipe = [[UISwipeGestureRecognizer alloc]
                                            initWithTarget: self
                                            action: @selector(handleSwipe:)];
@@ -215,7 +212,6 @@ SPTAudioStreamingDelegate
                                             action: @selector(handleSwipe:)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     
-    
     [self.view addGestureRecognizer:leftSwipe];
     [self.view addGestureRecognizer:rightSwipe];
 }
@@ -223,7 +219,6 @@ SPTAudioStreamingDelegate
 - (void)handleSwipe:(UISwipeGestureRecognizer *)gesture
 {
     switch (gesture.direction) {
-            
         case UISwipeGestureRecognizerDirectionLeft:
         {
             if(self.currentSongIndex == (self.trackURIs.count - 1) && !self.audioPlayer.shuffle) {
@@ -248,7 +243,6 @@ SPTAudioStreamingDelegate
              skipPrevious:^(NSError *error) {
                  [self itemChangeCallBack];
              }];
-            
             break;
         }
         default:

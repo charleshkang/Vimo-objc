@@ -106,7 +106,6 @@ SPTAuthViewDelegate
         if (error) {
             return;
         }
-        
         [self.navigationController popToRootViewControllerAnimated:NO];
     }];
 }
