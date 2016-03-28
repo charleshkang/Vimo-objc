@@ -9,7 +9,9 @@
 #import "VOMusicPlayerViewController.h"
 #import "VOPlaylistTableViewController.h"
 #import "VOUser.h"
+
 #import "Config.h"
+#import "SDWebImage/UIImageView+WebCache.h"
 
 @interface VOMusicPlayerViewController ()
 <
@@ -19,7 +21,7 @@ SPTAudioStreamingDelegate
 @property (nonatomic) SPTPlaylistSnapshot *currentPlaylist;
 @property (nonatomic) NSMutableArray *trackURIs;
 @property (nonatomic) SPTArtist *currentArtist;
-@property (nonatomic) NSInteger currentSongIndex;
+@property (nonatomic) int currentSongIndex;
 
 @property (nonatomic) UIImage *playImage;
 @property (nonatomic) UIImage *pauseImage;
@@ -109,12 +111,14 @@ SPTAudioStreamingDelegate
 #pragma mark - Player Implementation
 
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didReceiveMessage:(NSString *)message {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Spotify Message:"
-                                                        message:message
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Spotify Message:"
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:nil];
+    [alertController addAction:ok];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri
@@ -122,33 +126,38 @@ SPTAudioStreamingDelegate
     self.currentSongIndex = self.audioPlayer.currentTrackIndex;
     [SPTTrack trackWithURI:trackUri session:self.session callback:^(NSError *error, SPTTrack *track) {
         self.currentTrack = track;
-
+        
         self.titleLabel.text = self.currentTrack.name;
         SPTPartialArtist *artist = (SPTPartialArtist *)[self.currentTrack.artists objectAtIndex:0];
         self.artistLabel.text = artist.name;
-        NSURL *coverArtURL = self.currentTrack.album.largestCover.imageURL;
-        
-        if (coverArtURL) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSError *error = nil;
-                UIImage *image = nil;
-                NSData *imageData = [NSData dataWithContentsOfURL:coverArtURL options:0 error:&error];
-                
-                if (imageData != nil) {
-                    image = [UIImage imageWithData:imageData];
-                }
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.coverView.image = image;
-                    if (image == nil) {
-                        NSLog(@"Couldn't load cover image with error: %@", error);
-                        return;
-                    }
-                });
-            });
-        }
+        [self itemChangeCallBack];
+        //        NSURL *coverArtURL = self.currentTrack.album.largestCover.imageURL;
+        //
+        //        if (coverArtURL) {
+        //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //                NSError *error = nil;
+        //                UIImage *image = nil;
+        //                NSData *imageData = [NSData dataWithContentsOfURL:coverArtURL options:0 error:&error];
+        //
+        //                if (imageData != nil) {
+        //                    image = [UIImage imageWithData:imageData];
+        //                }
+        //
+        //                dispatch_async(dispatch_get_main_queue(), ^{
+        //                    self.coverView.image = image;
+        //                    if (image == nil) {
+        //                        NSLog(@"Couldn't load cover image with error: %@", error);
+        //                        return;
+        //                    }
+        //                });
+        //            });
+        //        }
     }
      ];
+}
+
+- (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangeToTrack:(NSDictionary *)trackMetadata {
+    [self itemChangeCallBack];
 }
 
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didChangePlaybackStatus:(BOOL)isPlaying
@@ -204,9 +213,9 @@ SPTAudioStreamingDelegate
 - (void)handleSwipe:(UISwipeGestureRecognizer *)gesture
 {
     switch (gesture.direction) {
-
-        case UISwipeGestureRecognizerDirectionLeft:
             
+        case UISwipeGestureRecognizerDirectionLeft:
+        {
             if(self.currentSongIndex == (self.trackURIs.count - 1) && !self.audioPlayer.shuffle) {
                 self.currentSongIndex = 0;
                 SPTPlayOptions *playOptions = [SPTPlayOptions new];
@@ -219,19 +228,25 @@ SPTAudioStreamingDelegate
                 }];
             }
             [self.audioPlayer skipNext:^(NSError *error) {
-                
+                [self itemChangeCallBack];
+                NSLog(@"skipped");
             }];
             break;
-            
+        }
         case UISwipeGestureRecognizerDirectionRight:
-            [self.audioPlayer skipPrevious:^(NSError *error) {
-            }];
+        {
+            [self.audioPlayer
+             skipPrevious:^(NSError *error) {
+                 [self itemChangeCallBack];
+                 NSLog(@"previous");
+             }];
             
             break;
-            
+        }
         default:
-            
+        {
             break;
+        }
     }
 }
 
@@ -247,5 +262,17 @@ SPTAudioStreamingDelegate
     [self.navigationController.navigationBar
      setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
+
+#pragma mark - Handle Callback
+
+- (void)itemChangeCallBack
+{
+    [SPTTrack trackWithURI:self.audioPlayer.currentTrackURI session:self.session callback:^(NSError *error, id object) {
+        SPTTrack *track = object;
+        // Fetch the artwork from library
+        [self.coverView sd_setImageWithURL:track.album.largestCover.imageURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        }];
+    }
+     ];}
 
 @end
