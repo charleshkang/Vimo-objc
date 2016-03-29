@@ -76,6 +76,7 @@ SPTAudioStreamingDelegate
 
 - (void)handleNewSession
 {
+    NSLog(@"timeStamp");
     SPTAuth *auth = [SPTAuth defaultInstance];
     self.currentSongIndex = 0;
     
@@ -93,6 +94,7 @@ SPTAudioStreamingDelegate
             return;
         }
         [self.audioPlayer playURIs:self.trackURIs fromIndex:self.currentSongIndex callback:^(NSError *error) {
+            NSLog(@"playURIs");
             if (error != nil) {
                 NSLog(@"Error:%@", error);
                 return;
@@ -119,6 +121,7 @@ SPTAudioStreamingDelegate
 
 - (void)audioStreaming:(SPTAudioStreamingController *)audioStreaming didStartPlayingTrack:(NSURL *)trackUri
 {
+    NSLog(@"didStartPlayingTrack");
     self.currentSongIndex = self.audioPlayer.currentTrackIndex;
     [SPTTrack trackWithURI:trackUri session:self.session callback:^(NSError *error, SPTTrack *track) {
         self.currentTrack = track;
