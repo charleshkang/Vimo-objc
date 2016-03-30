@@ -43,8 +43,6 @@
     
     if (auth.session == nil || ![auth.session isValid]) {
         [navigationController pushViewController:[VOLoginVC new] animated:NO];
-    } else if ((auth.sessionUserDefaultsKey = nil)) {
-        [navigationController pushViewController:[VOLoginVC new] animated:NO];
     } else {
         [[VOUser user] handle:auth.session];
     }
