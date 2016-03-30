@@ -6,8 +6,9 @@
 //  Copyright © 2016 Charles Kang. All rights reserved.
 //
 
-#import "VOLoginVC.h"
 #import "Config.h"
+#import "VOLoginVC.h"
+#import "VOPlaylistTableViewController.h"
 #import "VOUser.h"
 
 #import <Spotify/Spotify.h>
@@ -19,7 +20,9 @@ SPTAuthViewDelegate
 
 @property (nonatomic) SPTAuthViewController *authViewController;
 @property (nonatomic) VOUser *user;
-@property (nonatomic) SPTArtist *genres;
+@property (nonatomic) SPTSession *spotifySession;
+
+@property (nonnull) VOPlaylistTableViewController *playlistsVC;
 
 @end
 
@@ -56,14 +59,6 @@ SPTAuthViewDelegate
 
 - (IBAction)userLoggedInWithSpotify:(id)sender
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (self.user) {
-        [defaults setBool:YES forKey:@"hasLaunchedOnce"];
-        [defaults setBool:YES forKey:@"UserLoggedIn"];
-        VOPlaylistTableViewController *playlistVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"playlistsVC"];
-        [self presentViewController:playlistVC animated:YES completion:nil];
-        [defaults synchronize];
-    }
     [self login];
     [self checkIfSessionIsValid];
 }

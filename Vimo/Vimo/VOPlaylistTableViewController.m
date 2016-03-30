@@ -143,7 +143,14 @@
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.musicPlayerVC = nil;
-            [self.navigationController pushViewController:[VOLoginVC new] animated:NO];
+            VOLoginVC *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"loginVC"];
+            UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
+            [self presentViewController:navigationController animated:YES completion:nil];
+            auth.session = nil;
+//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//            [defaults setValue:auth.sessionUserDefaultsKey forKey:@"userLoggedOut"];
+//            [defaults synchronize];
+            NSLog(@"session: %@", auth.session);
         });
     }
 }

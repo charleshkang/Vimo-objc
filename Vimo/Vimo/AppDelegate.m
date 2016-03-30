@@ -23,23 +23,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if (![defaults boolForKey:@"hasLaunchedOnce"]) {
-        VOLoginVC *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"loginViewController"];
-        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
-        self.window.rootViewController = navigationController;
-    } else if ([defaults boolForKey:@"hasLaunchedOnce"] && [defaults boolForKey:@"UserLoggedIn"]) {
-        VOPlaylistTableViewController *playlistsVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"playlistsVC"];
-        
-        self.window.rootViewController = playlistsVC;
-    }
-    
-//    VOPlaylistTableViewController *playlistSelectionVC = [VOPlaylistTableViewController new];
-    
-//    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:playlistSelectionVC];
-
-    
     // Spotify Authorization Initializers
     SPTAuth *auth = [SPTAuth defaultInstance];
     auth.clientID = @kClientId;
@@ -54,6 +37,20 @@
     auth.tokenRefreshURL = [NSURL URLWithString:@kTokenRefreshServiceURL];
 #endif
     auth.sessionUserDefaultsKey = @kSessionUserDefaultsKey;
+    
+    VOLoginVC *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"loginVC"];
+    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
+    
+    if (auth.session == nil || ![auth.session isValid]) {
+        [navigationController pushViewController:[VOLoginVC new] animated:NO];
+    } else if ((auth.sessionUserDefaultsKey = nil)) {
+        [navigationController pushViewController:[VOLoginVC new] animated:NO];
+    } else {
+        [[VOUser user] handle:auth.session];
+    }
+    
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *userLoggedIn = [defaults stringForKey:auth.sessionUserDefaultsKey];
     
     return YES;
 }
