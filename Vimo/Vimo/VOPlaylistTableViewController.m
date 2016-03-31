@@ -89,6 +89,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if(!self.musicPlayerVC){
+        self.musicPlayerVC = [VOMusicPlayerViewController new];
+    }
+
     VOMusicPlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"musicPlayerVC"];
     vc.partialPlaylist = [self.playlists objectAtIndex:indexPath.row];
     if (self.currentSongIndex != indexPath.row) {
@@ -129,6 +134,7 @@
 - (IBAction)logoutButton:(id)sender
 {
     SPTAuth *auth = [SPTAuth defaultInstance];
+    
     [self.playlists removeAllObjects];
     self.currentSongIndex = -1;
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
@@ -141,17 +147,20 @@
         }];
         
     } else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.musicPlayerVC = nil;
-            VOLoginVC *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"loginVC"];
-            UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
-            [self presentViewController:navigationController animated:YES completion:nil];
-            auth.session = nil;
-//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//            [defaults setValue:auth.sessionUserDefaultsKey forKey:@"userLoggedOut"];
-//            [defaults synchronize];
-            NSLog(@"session: %@", auth.session);
-        });
+        self.musicPlayerVC = nil;
+        auth.session = nil;
+        
+        VOLoginVC *loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"loginVC"];
+        UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:loginVC];
+        [self presentViewController:navigationController animated:YES completion:nil];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:auth.sessionUserDefaultsKey forKey:@"userLoggedOut"];
+        [defaults setObject:@"playlistsVC" forKey:@"loginVC"];
+        [defaults synchronize];
+        
+        NSLog(@"session: %@", auth.session);
+        
     }
 }
 

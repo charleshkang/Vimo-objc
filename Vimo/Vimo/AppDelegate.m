@@ -48,7 +48,10 @@
     }
     
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    NSString *userLoggedIn = [defaults stringForKey:auth.sessionUserDefaultsKey];
+//    loginVC = [[VOLoginVC alloc] initWithNibName:@"loginVC" bundle:nil];
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//    self.window.rootViewController = navController;
+//    [defaults synchronize];
     
     return YES;
 }
