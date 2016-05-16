@@ -2,7 +2,7 @@
 
 <h1>Vimo is a visually appealing music player using the Spotify iOS SDK. </h1>
 
-![Vimo Demo](https://github.com/charleshkang/Vimo/blob/master/Vimo.gif)
+![Vimo](https://github.com/charleshkang/Vimo/blob/master/Vimo1.png), (https://github.com/charleshkang/Vimo/blob/master/Vimo2.png), (https://github.com/charleshkang/Vimo/blob/master/Vimo3.png)
 
 Vimo is a passion project by <a href="https://twitter.com/charleshkang1"</a> Charles Kang</a>. I really love music and discovering new music has become somewhat of a hobby of mine over the years. I also really love great UI and UX, so I wanted to make something that really expresses those passions in an app.
 
