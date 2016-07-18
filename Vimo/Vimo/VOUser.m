@@ -17,7 +17,7 @@ static VOUser *user = nil;
     if (!user) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            user = [self new];
+            user = [self alloc];
         });
     }
     return user;

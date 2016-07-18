@@ -21,5 +21,4 @@
 @property (nonatomic) VOPlaylistTableViewController *playlistsVC;
 @property(strong, nonatomic) SPTAudioStreamingController *spotifyPlayer;
 
-
 @end
